@@ -9,24 +9,36 @@ interface JobListProps {
   jobs: Job[];
 }
 
+const JOBS_PER_PAGE = 21;
+
 export default function JobList({ jobs }: JobListProps) {
   const [filters, setFilters] = useState<JobFilters>({});
   const [showFilters, setShowFilters] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
 
   // 都道府県リストを抽出
   const prefectures = useMemo(() => {
     const prefs = new Set<string>();
     jobs.forEach((job) => {
+      // location.prefecture から抽出
       if (job.location?.prefecture) {
-        prefs.add(job.location.prefecture);
+        // 郵便番号や数字を除外
+        const cleanPref = job.location.prefecture.replace(/[0-9〒\-]/g, '').trim();
+        if (cleanPref && cleanPref.match(/[都道府県]/)) {
+          prefs.add(cleanPref);
+        }
       }
       // stores からも都道府県を抽出
       job.stores?.forEach((store) => {
         const address = store.address || store.location?.prefecture;
         if (address) {
-          // 住所から都道府県を抽出（簡易版）
-          const match = address.match(/^(.+?[都道府県])/);
-          if (match) prefs.add(match[1]);
+          // 住所から都道府県を抽出（郵便番号を除外）
+          const cleanAddress = address.replace(/^[0-9〒\-\s]+/, ''); // 先頭の郵便番号を削除
+          const match = cleanAddress.match(/^(.+?[都道府県])/);
+          if (match) {
+            const pref = match[1].replace(/[0-9〒\-]/g, '').trim();
+            if (pref) prefs.add(pref);
+          }
         }
       });
     });
@@ -61,13 +73,26 @@ export default function JobList({ jobs }: JobListProps) {
       ...prev,
       [key]: value === '' ? undefined : value,
     }));
+    setCurrentPage(1); // フィルター変更時はページを1に戻す
   };
 
   const clearFilters = () => {
     setFilters({});
+    setCurrentPage(1); // フィルタークリア時もページを1に戻す
   };
 
   const activeFilterCount = Object.values(filters).filter(Boolean).length;
+
+  // ページネーション処理
+  const totalPages = Math.ceil(filteredJobs.length / JOBS_PER_PAGE);
+  const startIndex = (currentPage - 1) * JOBS_PER_PAGE;
+  const endIndex = startIndex + JOBS_PER_PAGE;
+  const paginatedJobs = filteredJobs.slice(startIndex, endIndex);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <div className="space-y-4">
@@ -168,11 +193,88 @@ export default function JobList({ jobs }: JobListProps) {
 
       {/* 求人一覧 */}
       {filteredJobs.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredJobs.map((job) => (
-            <JobCard key={job.id} job={job} />
-          ))}
-        </div>
+        <>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {paginatedJobs.map((job) => (
+              <JobCard key={job.id} job={job} />
+            ))}
+          </div>
+
+          {/* ページネーション */}
+          {totalPages > 1 && (
+            <div className="mt-8 flex items-center justify-center gap-2">
+              {/* 前へボタン */}
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className={`px-4 py-2 rounded-lg border ${
+                  currentPage === 1
+                    ? 'border-gray-200 text-gray-400 cursor-not-allowed'
+                    : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                前へ
+              </button>
+
+              {/* ページ番号 */}
+              <div className="flex gap-1">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => {
+                  // 最初、最後、現在のページ前後2つを表示
+                  const showPage =
+                    page === 1 ||
+                    page === totalPages ||
+                    (page >= currentPage - 2 && page <= currentPage + 2);
+
+                  // 省略記号を表示
+                  const showEllipsisBefore = page === currentPage - 3 && currentPage > 4;
+                  const showEllipsisAfter = page === currentPage + 3 && currentPage < totalPages - 3;
+
+                  if (showEllipsisBefore || showEllipsisAfter) {
+                    return (
+                      <span key={page} className="px-3 py-2 text-gray-500">
+                        ...
+                      </span>
+                    );
+                  }
+
+                  if (!showPage) return null;
+
+                  return (
+                    <button
+                      key={page}
+                      onClick={() => handlePageChange(page)}
+                      className={`min-w-[40px] px-3 py-2 rounded-lg ${
+                        currentPage === page
+                          ? 'bg-blue-600 text-white font-semibold'
+                          : 'border border-gray-300 text-gray-700 hover:bg-gray-50'
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* 次へボタン */}
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className={`px-4 py-2 rounded-lg border ${
+                  currentPage === totalPages
+                    ? 'border-gray-200 text-gray-400 cursor-not-allowed'
+                    : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                次へ
+              </button>
+            </div>
+          )}
+
+          {/* ページ情報 */}
+          <div className="mt-4 text-center text-sm text-gray-600">
+            {filteredJobs.length}件中 {startIndex + 1}〜{Math.min(endIndex, filteredJobs.length)}件を表示
+          </div>
+        </>
       ) : (
         <div className="text-center py-12">
           <svg
