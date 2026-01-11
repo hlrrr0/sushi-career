@@ -582,6 +582,12 @@ select {
   width: 14.3125rem;
   height: 2rem;
 }
+.p-footer__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
+}
 
 .p-footer__info {
   display: -webkit-box;
@@ -781,6 +787,12 @@ select {
   position: absolute;
   top: 1.5rem;
   left: 1.5rem;
+}
+.p-fv__logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: left center;
 }
 @media screen and (max-width: 767px) {
   .p-fv__logo {
