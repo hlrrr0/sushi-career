@@ -11,16 +11,19 @@ const ELME_COMMON_URL = "https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=
 
 export default function LineApplyButton({ job }: LineApplyButtonProps) {
   const handleApplyClick = () => {
-    // 1. 求人情報をクリップボードにコピー
-    const textToCopy = `【応募】\n求人ID: ${job.id}\n求人名: ${job.title}\nの詳細を希望します。`;
+    // 1. URLにパラメータを結合する（求人IDをトラッキング）
+    const trackingUrl = `${ELME_COMMON_URL}&cid1=${job.id}`;
+
+    // 2. 求人情報をクリップボードにコピー
+    const textToCopy = `【応募】\n求人名: ${job.title}\nの詳細を希望します。`;
 
     navigator.clipboard.writeText(textToCopy).then(() => {
-      // 2. エルメのURLへ移動
-      window.location.href = ELME_COMMON_URL;
+      // 3. パラメータ付きのURLへ移動
+      window.location.href = trackingUrl;
     }).catch((err) => {
       console.error('クリップボードへのコピーに失敗しました:', err);
       // コピーに失敗してもエルメのURLには移動する
-      window.location.href = ELME_COMMON_URL;
+      window.location.href = trackingUrl;
     });
   };
 
