@@ -19,7 +19,7 @@ export default function LineApplyButton({ job }: LineApplyButtonProps) {
     const encodedShopName = encodeURIComponent(shopName);
 
     // 2. URLを作成（cid2に店舗名を追加）
-    const trackingUrl = `${ELME_COMMON_URL}&job_id=${job.id}&job_title=${encodedTitle}&cid2=${encodedShopName}`;
+    const trackingUrl = `${ELME_COMMON_URL}&cid1=${job.id}&cid2=${encodedShopName}`;
 
     // 3. 求人情報をクリップボードにコピー（念のため）
     const textToCopy = `【応募】\n求人名: ${job.title}\nの詳細を希望します。`;
