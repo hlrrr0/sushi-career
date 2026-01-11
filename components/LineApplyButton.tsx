@@ -11,14 +11,21 @@ const ELME_COMMON_URL = "https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=
 
 export default function LineApplyButton({ job }: LineApplyButtonProps) {
   const handleApplyClick = () => {
-    // 1. URLにパラメータを結合する（求人IDをトラッキング）
-    const trackingUrl = `${ELME_COMMON_URL}&cid1=${job.id}`;
+    // 店舗名を取得（stores配列の最初の店舗名、なければ会社名、それもなければ空文字）
+    const shopName = job.stores?.[0]?.name || job.company?.name || '';
+    
+    // 1. 日本語のエンコード処理（文字化け防止）
+    const encodedTitle = encodeURIComponent(job.title);
+    const encodedShopName = encodeURIComponent(shopName);
 
-    // 2. 求人情報をクリップボードにコピー
+    // 2. URLを作成（cid2に店舗名を追加）
+    const trackingUrl = `${ELME_COMMON_URL}&job_id=${job.id}&job_title=${encodedTitle}&cid2=${encodedShopName}`;
+
+    // 3. 求人情報をクリップボードにコピー（念のため）
     const textToCopy = `【応募】\n求人名: ${job.title}\nの詳細を希望します。`;
 
     navigator.clipboard.writeText(textToCopy).then(() => {
-      // 3. パラメータ付きのURLへ移動
+      // 4. パラメータ付きのURLへ移動
       window.location.href = trackingUrl;
     }).catch((err) => {
       console.error('クリップボードへのコピーに失敗しました:', err);
