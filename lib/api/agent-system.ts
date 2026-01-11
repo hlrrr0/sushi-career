@@ -327,6 +327,12 @@ export async function fetchAllJobs(): Promise<Job[]> {
     // status フィルタリング: API の "active" を "published" として扱う
     const publishedJobs = jobs.filter(job => job.status === 'active' || job.status === 'published');
     console.log(`Found ${publishedJobs.length} active jobs out of ${jobs.length} total`);
+    
+    // 最初のジョブのサンプルをログ出力
+    if (publishedJobs.length > 0) {
+      console.log('Sample job from list:', JSON.stringify(publishedJobs[0], null, 2));
+    }
+    
     return publishedJobs;
   } catch (error) {
     console.error('Failed to fetch jobs:', error);
@@ -338,6 +344,7 @@ export async function fetchAllJobs(): Promise<Job[]> {
 
 /**
  * 特定の求人詳細を取得
+ * 詳細APIが不完全なデータしか返さないため、一覧APIから該当の求人を探す
  */
 export async function fetchJobById(jobId: string): Promise<Job | null> {
   // モックデータを使用
@@ -348,59 +355,21 @@ export async function fetchJobById(jobId: string): Promise<Job | null> {
   }
 
   try {
-    const url = new URL(`/api/public/jobs/${jobId}`, API_BASE_URL);
-    url.searchParams.append('includeCompany', 'true');
-    url.searchParams.append('includeStores', 'true');
-
-    console.log('Fetching job detail from:', url.toString());
-
-    const response = await fetch(url.toString(), {
-      headers: {
-        'X-API-Key': API_KEY!,
-        'Content-Type': 'application/json',
-      },
-      cache: 'no-store', // 開発時はキャッシュを無効化
-    });
-
-    if (!response.ok) {
-      if (response.status === 404) {
-        console.log('Job not found:', jobId);
-        return null;
-      }
-      console.error(`API Error: ${response.status} - ${response.statusText}`);
-      const errorText = await response.text();
-      console.error('Error response:', errorText);
-      throw new Error(`API Error: ${response.status}`);
-    }
-
-    const data = await response.json();
-    console.log('Job detail response structure:', {
-      keys: Object.keys(data),
-      hasJob: 'job' in data,
-      hasData: 'data' in data,
-    });
+    // まず一覧APIから全求人を取得して該当のジョブを探す
+    console.log('Fetching job by ID from list API:', jobId);
+    const allJobs = await fetchAllJobs();
+    const foundJob = allJobs.find(j => j.id === jobId);
     
-    // レスポンス形式を判定
-    let job: Job;
-    if (data.data && data.data.job) {
-      job = data.data.job;
-    } else if (data.job) {
-      job = data.job;
-    } else if (data.data) {
-      job = data.data;
-    } else {
-      job = data;
+    if (foundJob) {
+      console.log('Found job in list:', foundJob.id, foundJob.title);
+      console.log('Job has salary:', !!foundJob.salary);
+      console.log('Job has workingHours:', !!foundJob.workingHours);
+      console.log('Job has stores:', foundJob.stores?.length || 0);
+      return foundJob;
     }
     
-    console.log('Fetched job:', job.id, job.title, 'status:', job.status);
-    
-    // 公開中の求人のみ返す (active または published)
-    if (job.status !== 'active' && job.status !== 'published') {
-      console.log('Job is not active/published:', job.status);
-      return null;
-    }
-
-    return job;
+    console.log('Job not found in list:', jobId);
+    return null;
   } catch (error) {
     console.error(`Failed to fetch job ${jobId}:`, error);
     return null;
