@@ -70,29 +70,31 @@ export default function JobList({ jobs }: JobListProps) {
   // 都道府県リストを抽出
   const prefectures = useMemo(() => {
     const prefs = new Set<string>();
+    
+    // 都道府県名の正規表現パターン
+    const prefecturePattern = /(北海道|青森県|岩手県|宮城県|秋田県|山形県|福島県|茨城県|栃木県|群馬県|埼玉県|千葉県|東京都|神奈川県|新潟県|富山県|石川県|福井県|山梨県|長野県|岐阜県|静岡県|愛知県|三重県|滋賀県|京都府|大阪府|兵庫県|奈良県|和歌山県|鳥取県|島根県|岡山県|広島県|山口県|徳島県|香川県|愛媛県|高知県|福岡県|佐賀県|長崎県|熊本県|大分県|宮崎県|鹿児島県|沖縄県)/;
+    
     jobs.forEach((job) => {
       // location.prefecture から抽出
       if (job.location?.prefecture) {
-        // 郵便番号や数字を除外
-        const cleanPref = job.location.prefecture.replace(/[0-9〒\-]/g, '').trim();
-        if (cleanPref && cleanPref.match(/[都道府県]/)) {
-          prefs.add(cleanPref);
+        const match = job.location.prefecture.match(prefecturePattern);
+        if (match) {
+          prefs.add(match[1]);
         }
       }
+      
       // stores からも都道府県を抽出
       job.stores?.forEach((store) => {
         const address = store.address || store.location?.prefecture;
         if (address) {
-          // 住所から都道府県を抽出（郵便番号を除外）
-          const cleanAddress = address.replace(/^[0-9〒\-\s]+/, ''); // 先頭の郵便番号を削除
-          const match = cleanAddress.match(/^(.+?[都道府県])/);
+          const match = address.match(prefecturePattern);
           if (match) {
-            const pref = match[1].replace(/[0-9〒\-]/g, '').trim();
-            if (pref) prefs.add(pref);
+            prefs.add(match[1]);
           }
         }
       });
     });
+    
     // コード順にソート
     return Array.from(prefs).sort((a, b) => {
       const codeA = PREFECTURE_CODES[a] || 999;
