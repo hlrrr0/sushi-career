@@ -71,6 +71,9 @@ export default async function JobDetailPage({
     job.stores?.[0]?.address || (job.location ? formatLocation(job.location) : '')
   );
 
+  // デバッグ: コンソールにジョブデータを出力
+  console.log('Job detail data:', JSON.stringify(job, null, 2));
+
   return (
     <>
       {/* 構造化データ */}
@@ -163,57 +166,89 @@ export default async function JobDetailPage({
             </p>
           </section>
 
+          {/* おすすめポイント */}
+          {job.recommendedPoints && (
+            <section className="p-6 border-b border-gray-200">
+              <h2 className="text-lg font-bold text-gray-900 mb-4">
+                おすすめポイント
+              </h2>
+              <p className="text-gray-700 whitespace-pre-wrap leading-relaxed">
+                {job.recommendedPoints}
+              </p>
+            </section>
+          )}
+
           {/* 業務内容 */}
-          {job.responsibilities && job.responsibilities.length > 0 && (
+          {job.responsibilities && (
             <section className="p-6 border-b border-gray-200">
               <h2 className="text-lg font-bold text-gray-900 mb-4">
                 具体的な業務内容
               </h2>
-              <ul className="space-y-2">
-                {job.responsibilities.map((item, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="text-blue-600 mr-2">•</span>
-                    <span className="text-gray-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
+              {Array.isArray(job.responsibilities) ? (
+                <ul className="space-y-2">
+                  {job.responsibilities.map((item, index) => (
+                    <li key={index} className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span className="text-gray-700">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-gray-700 whitespace-pre-wrap leading-relaxed">
+                  {job.responsibilities}
+                </p>
+              )}
             </section>
           )}
 
           {/* 応募資格・求める人材 */}
-          {((job.requirements && job.requirements.length > 0) || 
-            (job.qualifications && job.qualifications.length > 0)) && (
+          {(job.requirements || job.qualifications) && (
             <section className="p-6 border-b border-gray-200">
               <h2 className="text-lg font-bold text-gray-900 mb-4">
                 応募資格・求める人材
               </h2>
-              <ul className="space-y-2">
-                {(job.requirements || job.qualifications || []).map((item, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="text-blue-600 mr-2">•</span>
-                    <span className="text-gray-700 whitespace-pre-wrap">{item}</span>
-                  </li>
-                ))}
-              </ul>
+              {(() => {
+                const items = job.requirements || job.qualifications;
+                return Array.isArray(items) ? (
+                  <ul className="space-y-2">
+                    {items.map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="text-blue-600 mr-2">•</span>
+                        <span className="text-gray-700 whitespace-pre-wrap">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="text-gray-700 whitespace-pre-wrap leading-relaxed">
+                    {items}
+                  </p>
+                );
+              })()}
             </section>
           )}
 
           {/* 勤務時間 */}
-          {job.workingHours && (job.workingHours.note || job.workingHours.notes || job.workingHours.start) && (
+          {job.workingHours && (
             <section className="p-6 border-b border-gray-200">
               <h2 className="text-lg font-bold text-gray-900 mb-4">
                 勤務時間
               </h2>
               <div className="text-gray-700 whitespace-pre-wrap">
-                {job.workingHours.start && job.workingHours.end && (
-                  <p className="mb-2">
-                    {job.workingHours.start} 〜 {job.workingHours.end}
-                  </p>
-                )}
-                {(job.workingHours.note || job.workingHours.notes) && (
-                  <p className="text-sm text-gray-600">
-                    {job.workingHours.note || job.workingHours.notes}
-                  </p>
+                {typeof job.workingHours === 'string' ? (
+                  <p>{job.workingHours}</p>
+                ) : (
+                  <>
+                    {job.workingHours.start && job.workingHours.end && (
+                      <p className="mb-2">
+                        {job.workingHours.start} 〜 {job.workingHours.end}
+                      </p>
+                    )}
+                    {(job.workingHours.note || job.workingHours.notes) && (
+                      <p className="text-sm text-gray-600">
+                        {job.workingHours.note || job.workingHours.notes}
+                      </p>
+                    )}
+                  </>
                 )}
               </div>
             </section>
@@ -232,20 +267,26 @@ export default async function JobDetailPage({
           )}
 
           {/* 福利厚生・待遇 */}
-          {(job.benefits && job.benefits.length > 0) || job.welfare && (
+          {(job.benefits || job.welfare) && (
             <section className="p-6 border-b border-gray-200">
               <h2 className="text-lg font-bold text-gray-900 mb-4">
                 福利厚生・待遇
               </h2>
-              {job.benefits && job.benefits.length > 0 ? (
-                <ul className="space-y-2">
-                  {job.benefits.map((item, index) => (
-                    <li key={index} className="flex items-start">
-                      <span className="text-blue-600 mr-2">•</span>
-                      <span className="text-gray-700 whitespace-pre-wrap">{item}</span>
-                    </li>
-                  ))}
-                </ul>
+              {job.benefits ? (
+                Array.isArray(job.benefits) ? (
+                  <ul className="space-y-2">
+                    {job.benefits.map((item, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="text-blue-600 mr-2">•</span>
+                        <span className="text-gray-700 whitespace-pre-wrap">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <div className="text-gray-700 whitespace-pre-wrap">
+                    {job.benefits}
+                  </div>
+                )
               ) : (
                 <div className="text-gray-700 whitespace-pre-wrap">
                   {job.welfare}
@@ -254,60 +295,102 @@ export default async function JobDetailPage({
             </section>
           )}
 
+          {/* 選考プロセス */}
+          {job.selectionProcess && (
+            <section className="p-6 border-b border-gray-200">
+              <h2 className="text-lg font-bold text-gray-900 mb-4">
+                選考プロセス
+              </h2>
+              <div className="text-gray-700 whitespace-pre-wrap">
+                {job.selectionProcess}
+              </div>
+            </section>
+          )}
+
+          {/* 年齢制限 */}
+          {job.ageLimit && (
+            <section className="p-6 border-b border-gray-200">
+              <h2 className="text-lg font-bold text-gray-900 mb-4">
+                年齢制限について
+              </h2>
+              <div className="text-gray-700 whitespace-pre-wrap">
+                {job.ageLimitReason || '年齢制限があります'}
+              </div>
+            </section>
+          )}
+
           {/* 勤務地 */}
-          {job.stores && job.stores.length > 0 && (
+          {(job.stores && job.stores.length > 0) || job.location && (
             <section className="p-6 border-b border-gray-200">
               <h2 className="text-lg font-bold text-gray-900 mb-4">勤務地</h2>
               <div className="space-y-4">
-                {job.stores.map((store, index) => (
-                  <div key={store.id} className="border-l-4 border-blue-500 pl-4">
-                    <div className="font-medium text-gray-900 mb-2">
-                      {store.name}
-                    </div>
-                    <div className="text-gray-700 mb-2">
-                      {store.location?.zipCode && (
-                        <div className="text-sm text-gray-600 mb-1">
-                          〒{store.location.zipCode}
-                        </div>
-                      )}
-                      <div>{store.address || formatLocation(store.location)}</div>
-                      {store.location?.building && (
-                        <div className="text-sm text-gray-600">
-                          {store.location.building}
-                        </div>
-                      )}
-                    </div>
-                    {index === 0 && mapUrl && (
-                      <a
-                        href={mapUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center text-sm text-blue-600 hover:text-blue-700"
-                      >
-                        <svg
-                          className="w-4 h-4 mr-1"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
+                {job.stores && job.stores.length > 0 ? (
+                  job.stores.map((store, index) => (
+                    <div key={store.id} className="border-l-4 border-blue-500 pl-4">
+                      <div className="font-medium text-gray-900 mb-2">
+                        {store.name}
+                      </div>
+                      <div className="text-gray-700 mb-2">
+                        {store.location?.zipCode && (
+                          <div className="text-sm text-gray-600 mb-1">
+                            〒{store.location.zipCode}
+                          </div>
+                        )}
+                        <div>{store.address || formatLocation(store.location)}</div>
+                        {store.location?.building && (
+                          <div className="text-sm text-gray-600">
+                            {store.location.building}
+                          </div>
+                        )}
+                      </div>
+                      {index === 0 && mapUrl && (
+                        <a
+                          href={mapUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center text-sm text-blue-600 hover:text-blue-700"
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                          />
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                          />
-                        </svg>
-                        Google Mapsで開く
-                      </a>
-                    )}
+                          <svg
+                            className="w-4 h-4 mr-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                            />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                            />
+                          </svg>
+                          Google Mapsで開く
+                        </a>
+                      )}
+                    </div>
+                  ))
+                ) : job.location && (
+                  <div className="border-l-4 border-blue-500 pl-4">
+                    <div className="text-gray-700 mb-2">
+                      {job.location.zipCode && (
+                        <div className="text-sm text-gray-600 mb-1">
+                          〒{job.location.zipCode}
+                        </div>
+                      )}
+                      <div>{formatLocation(job.location)}</div>
+                      {job.location.building && (
+                        <div className="text-sm text-gray-600">
+                          {job.location.building}
+                        </div>
+                      )}
+                    </div>
                   </div>
-                ))}
+                )}
               </div>
             </section>
           )}

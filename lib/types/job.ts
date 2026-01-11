@@ -8,16 +8,16 @@ export interface Job {
   status: 'draft' | 'published' | 'closed' | 'active';
   employmentType: string;
   description: string;
-  responsibilities?: string[];
-  requirements?: string[];
-  qualifications?: string[];
-  benefits?: string[];
+  responsibilities?: string[] | string;
+  requirements?: string[] | string;
+  qualifications?: string[] | string;
+  benefits?: string[] | string;
   workingHours?: {
     start?: string;
     end?: string;
     note?: string;
     notes?: string;
-  };
+  } | string;
   salary?: {
     type?: string;
     min?: number;
@@ -44,6 +44,7 @@ export interface Job {
   ageLimit?: boolean;
   ageLimitReason?: string;
   recommendedPoints?: string;
+  [key: string]: any; // 追加のフィールドを許容
 }
 
 export interface Company {
