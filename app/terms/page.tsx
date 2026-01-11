@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 };
 
 export default function TermsPage() {
-  const siteName = process.env.NEXT_PUBLIC_SITE_NAME || '求人サイト';
+  const siteName = process.env.NEXT_PUBLIC_SITE_NAME || '鮨キャリ';
   const contactEmail = process.env.NEXT_PUBLIC_CONTACT_EMAIL || 'contact@example.com';
 
   return (

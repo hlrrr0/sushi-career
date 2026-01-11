@@ -1,10 +1,10 @@
-# Agent System連携 求人サイト
+# Agent System連携 鮨キャリ
 
 Agent SystemのPublic APIを利用した、LINE応募特化型の求人メディアサイトです。
 
 ## 🎯 プロジェクト概要
 
-- **コンセプト**: 閲覧と応募に特化したシンプルな求人サイト
+- **コンセプト**: 寿司業界特化の求人サイト
 - **技術スタック**: Next.js 15 (App Router) + TypeScript + Tailwind CSS
 - **ホスティング**: Vercel推奨
 - **データソース**: Agent System Public API
@@ -76,7 +76,7 @@ AGENT_SYSTEM_API_URL=https://api.agent-system.example.com
 LINE_OFFICIAL_ID=@your_line_id
 
 # Site Configuration
-NEXT_PUBLIC_SITE_NAME=求人サイト
+NEXT_PUBLIC_SITE_NAME=鮨キャリ
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 NEXT_PUBLIC_CONTACT_EMAIL=contact@example.com
 ```

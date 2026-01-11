@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: '飲食人・寿司キャリア | 寿司職人専門の求人サイト',
+  title: '鮨キャリ | 寿司職人専門の求人サイト',
   description: '寿司職人専門のキャリアアドバイザーが、あなたのキャリアを無料サポート！国内最高峰の鮨求人を厳選紹介。',
 };
 
@@ -341,7 +341,7 @@ export default function LandingPage() {
                 </div>
                 <div className="p-faq__text">
                   <p className="p-faq__q --word">転職にかかる期間はどれくらい？</p>
-                  <p className="p-faq__a">平均◯ヵ月、最短で◯週間で入社に至る事例も</p>
+                  <p className="p-faq__a">平均3ヵ月、最短で2週間で入社に至る事例も</p>
                 </div>
               </div>
               <div className="p-faq__box">
@@ -350,7 +350,7 @@ export default function LandingPage() {
                 </div>
                 <div className="p-faq__text">
                   <p className="p-faq__q">経験年数が少なくても大丈夫？</p>
-                  <p className="p-faq__a">経験3年～OKの求人もあり。まずはご相談ください</p>
+                  <p className="p-faq__a">未経験のみしか応募できない求人から、即戦力のみ求人もあり。まずはご相談ください</p>
                 </div>
               </div>
               <div className="p-faq__box">
@@ -368,7 +368,7 @@ export default function LandingPage() {
                 </div>
                 <div className="p-faq__text">
                   <p className="p-faq__q">海外に挑戦するには何か準備が必要？</p>
-                  <p className="p-faq__a">英語力やビザ手続きなど将来的なサポートも視野に入れています</p>
+                  <p className="p-faq__a">国によってビザの取得要件などが異なるので、ご相談ください。</p>
                 </div>
               </div>
             </div>

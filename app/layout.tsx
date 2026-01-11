@@ -9,7 +9,7 @@ const notoSansJP = Noto_Sans_JP({
   display: "swap",
 });
 
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "求人サイト";
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "鮨キャリ";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
 
 export const metadata: Metadata = {

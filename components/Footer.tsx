@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 export default function Footer() {
-  const siteName = process.env.NEXT_PUBLIC_SITE_NAME || '求人サイト';
+  const siteName = process.env.NEXT_PUBLIC_SITE_NAME || '鮨キャリ';
   const currentYear = new Date().getFullYear();
 
   return (
@@ -13,7 +13,7 @@ export default function Footer() {
               {siteName}
             </h3>
             <p className="text-sm text-gray-600">
-              LINEで簡単応募できる求人サイト
+              寿司業界特化の求人サイト｜鮨キャリ
             </p>
           </div>
           
