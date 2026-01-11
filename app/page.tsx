@@ -17,7 +17,7 @@ export default function LandingPage() {
             <img src="/lp/img/sp/fv-sp.jpg" alt="寿司職人" width={390} height={848} />
           </picture>
           <h1 className="p-fv__logo">
-            <img src="/lp/img/logo.svg" alt="飲食人・寿司キャリア" />
+            <img src="/lp/img/logo-white.png" alt="飲食人・寿司キャリア" />
           </h1>
           <div className="p-fv__text-wrapper">
             <p className="p-fv__lead">
@@ -393,7 +393,7 @@ export default function LandingPage() {
         <div className="p-footer__inner">
           <div className="p-footer__left">
             <div className="p-footer__logo">
-              <img src="/lp/img/footer-logo.svg" alt="飲食人・寿司キャリア" width={229} height={32} />
+              <img src="/lp/img/logo.png" alt="飲食人・寿司キャリア" width={229} height={32} />
             </div>
             <div className="p-footer__info">
               <div className="p-footer__button">
