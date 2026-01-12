@@ -13,6 +13,9 @@ const notoSansJP = Noto_Sans_JP({
 const siteName = process.env.NEXT_PUBLIC_SITE_NAME || "鮨キャリ";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "";
 
+// Google Search Console verification meta tag
+const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "";
+
 export const metadata: Metadata = {
   title: {
     default: siteName,
@@ -21,6 +24,9 @@ export const metadata: Metadata = {
   description: "LINEで簡単応募できる求人情報サイト",
   keywords: ["求人", "転職", "アルバイト", "パート", "LINE応募"],
   metadataBase: siteUrl ? new URL(siteUrl) : undefined,
+  verification: googleSiteVerification ? {
+    google: googleSiteVerification,
+  } : undefined,
   openGraph: {
     title: siteName,
     description: "LINEで簡単応募できる求人情報サイト",
@@ -42,9 +48,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <head>
+      <body className={`${notoSansJP.variable} font-sans flex flex-col min-h-screen bg-gray-50`}>
         {/* Google Tag Manager */}
-        <script
+        <Script
+          id="google-tag-manager"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -54,8 +62,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
         {/* End Google Tag Manager */}
-      </head>
-      <body className={`${notoSansJP.variable} font-sans flex flex-col min-h-screen bg-gray-50`}>
+        
         {/* Google Tag Manager (noscript) */}
         <noscript
           dangerouslySetInnerHTML={{
@@ -64,6 +71,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe>`,
           }}
         />
         {/* End Google Tag Manager (noscript) */}
+        
         <ConditionalLayout>{children}</ConditionalLayout>
       </body>
     </html>
