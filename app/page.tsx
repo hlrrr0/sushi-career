@@ -293,29 +293,29 @@ export default function LandingPage() {
             <h2 className="c-heading --case">利用者の声・<br className="u-sp" />成功事例</h2>
             <div className="p-case__boxes">
               <div className="p-case__box">
-                <p className="p-case__heading">このサイトで国内有名店に就職でき、<br className="u-pc" />将来的には海外支店への道も準備中です！</p>
-                <p className="p-case__text">登録も簡単で、専任のコンサルタントがうんちゃらかんちゃら。テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                <p className="p-case__heading">老舗の名店で修行を積み、<br className="u-pc" />念願の独立への道が見えてきました！</p>
+                <p className="p-case__text">LINEで気軽に応募できたのが良かったです。店舗の雰囲気や求める人物像が詳しく書かれていて安心しました。面接では店主の方と技術についてじっくり話せて、入店後のミスマッチもありませんでした。</p>
                 <ul className="p-case__list">
-                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />月給が20万円アップ</li>
-                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />休日・待遇が充実</li>
-                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />技術をさらに磨ける環境に転職</li>
+                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />月給28万円→40万円に大幅アップ</li>
+                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />完全週休2日で家族との時間が増えた</li>
+                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />一流の技術を学べる環境に</li>
                 </ul>
                 <div className="p-case__profile">
                   <div className="p-case__icon"><img src="/lp/img/case-icon.svg" alt="顔アイコン" /></div>
-                  <p className="p-case__category">東京都 / 40代 / 男性</p>
+                  <p className="p-case__category">東京都 / 30代 / 男性</p>
                 </div>
               </div>
               <div className="p-case__box">
-                <p className="p-case__heading">このサイトで国内有名店に就職でき、<br className="u-pc" />将来的には海外支店への道も準備中です！</p>
-                <p className="p-case__text">登録も簡単で、専任のコンサルタントがうんちゃらかんちゃら。テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
+                <p className="p-case__heading">未経験から寿司職人に転身。<br className="u-pc" />今では店を任されるまでに成長しました！</p>
+                <p className="p-case__text">未経験OKの求人を探していて見つけました。LINEで問い合わせると丁寧に返信があり、研修制度や給与体系について詳しく教えてもらえました。今では握りを任されるようになり、やりがいを感じています。</p>
                 <ul className="p-case__list">
-                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />月給が20万円アップ</li>
-                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />休日・待遇が充実</li>
-                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />技術をさらに磨ける環境に転職</li>
+                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />賞与・昇給制度が充実</li>
+                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />まかない付きで食費が浮く</li>
+                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />丁寧な研修で未経験から成長</li>
                 </ul>
                 <div className="p-case__profile">
                   <div className="p-case__icon"><img src="/lp/img/case-icon.svg" alt="顔アイコン" /></div>
-                  <p className="p-case__category">東京都 / 40代 / 男性</p>
+                  <p className="p-case__category">大阪府 / 20代 / 男性</p>
                 </div>
               </div>
             </div>
