@@ -8,6 +8,8 @@ export async function POST(request: NextRequest) {
     const body: ContactInquiry = await request.json();
     const supabase = getServiceSupabase();
 
+    console.log('[Contact API] Received request:', { user_type: body.user_type, name: body.name });
+
     const { data, error } = await supabase
       .from('contact_inquiries')
       .insert([body])
@@ -21,6 +23,8 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    console.log('[Contact API] Data saved, sending Slack notification...');
 
     // Slack通知を送信（非同期、エラーは無視）
     notifyContactInquiry(data).catch(err => 

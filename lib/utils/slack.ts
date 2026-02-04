@@ -12,6 +12,8 @@ export async function sendSlackNotification(message: {
     return false;
   }
 
+  console.log('[Slack] Sending notification:', message.text);
+
   try {
     const response = await fetch(webhookUrl, {
       method: 'POST',
@@ -26,6 +28,7 @@ export async function sendSlackNotification(message: {
       return false;
     }
 
+    console.log('[Slack] Notification sent successfully');
     return true;
   } catch (error) {
     console.error('Error sending Slack notification:', error);
@@ -61,6 +64,9 @@ export async function notifyContactInquiry(data: {
       },
     },
     {
+      type: 'divider',
+    },
+    {
       type: 'section',
       fields: [
         {
@@ -90,42 +96,57 @@ export async function notifyContactInquiry(data: {
 
   // 企業の場合は会社名を追加
   if (data.user_type === 'employer' && data.company_name) {
-    blocks.push({
-      type: 'section',
-      fields: [
-        {
-          type: 'mrkdwn',
-          text: `*会社名:*\n${data.company_name}`,
-        },
-      ],
-    });
+    blocks.push(
+      {
+        type: 'divider',
+      },
+      {
+        type: 'section',
+        fields: [
+          {
+            type: 'mrkdwn',
+            text: `*会社名:*\n${data.company_name}`,
+          },
+        ],
+      }
+    );
   }
 
   // 求職者の場合は希望職種と経験年数を追加
   if (data.user_type === 'jobseeker') {
-    blocks.push({
-      type: 'section',
-      fields: [
-        {
-          type: 'mrkdwn',
-          text: `*希望職種:*\n${data.desired_position || 'なし'}`,
-        },
-        {
-          type: 'mrkdwn',
-          text: `*経験年数:*\n${data.experience_years || 'なし'}`,
-        },
-      ],
-    });
+    blocks.push(
+      {
+        type: 'divider',
+      },
+      {
+        type: 'section',
+        fields: [
+          {
+            type: 'mrkdwn',
+            text: `*希望職種:*\n${data.desired_position || 'なし'}`,
+          },
+          {
+            type: 'mrkdwn',
+            text: `*経験年数:*\n${data.experience_years || 'なし'}`,
+          },
+        ],
+      }
+    );
   }
 
   // メッセージを追加
-  blocks.push({
-    type: 'section',
-    text: {
-      type: 'mrkdwn',
-      text: `*メッセージ:*\n${data.message}`,
+  blocks.push(
+    {
+      type: 'divider',
     },
-  });
+    {
+      type: 'section',
+      text: {
+        type: 'mrkdwn',
+        text: `*メッセージ:*\n${data.message}`,
+      },
+    }
+  );
 
   await sendSlackNotification({
     text: `新しい問い合わせ: ${data.name}（${userTypeLabel}）`,
@@ -156,6 +177,9 @@ export async function notifyApplicationCompleted(data: {
       },
     },
     {
+      type: 'divider',
+    },
+    {
       type: 'section',
       fields: [
         {
@@ -180,6 +204,9 @@ export async function notifyApplicationCompleted(data: {
           text: `*電話番号:*\n${data.phone || '未入力'}`,
         },
       ],
+    },
+    {
+      type: 'divider',
     },
     {
       type: 'section',

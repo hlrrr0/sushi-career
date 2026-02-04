@@ -36,6 +36,13 @@ export async function PUT(request: NextRequest) {
     const body: JobApplication & { id: string } = await request.json();
     const { id, ...updateData } = body;
 
+    // 更新前のデータを取得（completed_atの状態を確認するため）
+    const { data: existingData } = await supabase
+      .from('job_applications')
+      .select('completed_at')
+      .eq('id', id)
+      .single();
+
     const { data, error } = await supabase
       .from('job_applications')
       .update(updateData)
@@ -51,8 +58,12 @@ export async function PUT(request: NextRequest) {
       );
     }
 
-    // 応募が完了した場合のみSlack通知を送信
-    if (data.status === 'completed' && data.completed_at) {
+    // 応募が完了した場合のみSlack通知を送信（初回完了時のみ）
+    const wasNotCompleted = !existingData?.completed_at;
+    const isNowCompleted = data.status === 'completed' && data.completed_at;
+    
+    if (wasNotCompleted && isNowCompleted) {
+      console.log('[Applications API] Sending completion notification for:', data.name);
       notifyApplicationCompleted(data).catch(err => 
         console.error('Failed to send Slack notification:', err)
       );
