@@ -6,6 +6,20 @@ import Link from 'next/link';
 export default function ExitIntentPopup() {
   const [isVisible, setIsVisible] = useState(false);
   const [hasShown, setHasShown] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const checkDevice = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkDevice();
+    window.addEventListener('resize', checkDevice);
+    
+    return () => window.removeEventListener('resize', checkDevice);
+  }, []);
 
   useEffect(() => {
     // すでに表示済みならイベントリスナーを設定しない
@@ -42,7 +56,12 @@ export default function ExitIntentPopup() {
     setIsVisible(false);
   };
 
-  if (!isVisible) return null;
+  if (!isVisible || !mounted) return null;
+
+  // デバイスに応じてリンク先を決定
+  const targetUrl = isMobile 
+    ? "https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
+    : "/apply";
 
   return (
     <>
@@ -206,7 +225,7 @@ export default function ExitIntentPopup() {
 
             {/* CTAボタン */}
             <Link 
-              href="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
+              href={targetUrl}
               style={{
                 display: 'block',
                 width: '100%',
