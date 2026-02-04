@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import ExitIntentPopup from '@/components/ExitIntentPopup';
 
 export const metadata = {
   title: '鮨キャリ | 寿司職人専門の求人サイト',
@@ -9,6 +10,7 @@ export default function LandingPage() {
   return (
     <>
       <link rel="stylesheet" href="/lp/css/style.css" />
+      <ExitIntentPopup />
       
       <main className="l-main">
         <div className="p-fv">
@@ -44,7 +46,7 @@ export default function LandingPage() {
             </p>
             <div className="c-button">
               <img src="/lp/img/icon-cta.svg" alt="簡単!30秒" />
-              <Link href="/jobs">求人を見てみる (無料)</Link>
+              <Link href="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK">求人を見てみる (無料)</Link>
             </div>
           </div>
         </div>
@@ -86,7 +88,7 @@ export default function LandingPage() {
           <div className="l-inner">
             <h2 className="c-heading --job">求人例</h2>
             <div className="p-job__boxes">
-              <Link href="/jobs" className="p-job__box">
+              <Link href="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK" className="p-job__box">
                 <div className="p-job__img">
                   <img className="u-pc" src="/lp/img/job-1.png" alt="" />
                   <img className="u-sp" src="/lp/img/sp/job-1-sp.png" alt="" />
@@ -100,7 +102,7 @@ export default function LandingPage() {
                 </div>
                 <p className="p-job__place">東京</p>
               </Link>
-              <Link href="/jobs" className="p-job__box">
+              <Link href="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK" className="p-job__box">
                 <div className="p-job__img">
                   <img className="u-pc" src="/lp/img/job-2.png" alt="" />
                   <img className="u-sp" src="/lp/img/sp/job-2-sp.png" alt="" />
@@ -114,7 +116,7 @@ export default function LandingPage() {
                 </div>
                 <p className="p-job__place">東京</p>
               </Link>
-              <Link href="/jobs" className="p-job__box">
+              <Link href="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK" className="p-job__box">
                 <div className="p-job__img">
                   <img className="u-pc" src="/lp/img/job-3.png" alt="" />
                   <img className="u-sp" src="/lp/img/sp/job-3-sp.png" alt="" />
@@ -128,7 +130,7 @@ export default function LandingPage() {
                 </div>
                 <p className="p-job__place">アメリカ</p>
               </Link>
-              <Link href="/jobs" className="p-job__box">
+              <Link href="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK" className="p-job__box">
                 <div className="p-job__img">
                   <img className="u-pc" src="/lp/img/job-4.png" alt="" />
                   <img className="u-sp" src="/lp/img/sp/job-4-sp.png" alt="" />
@@ -156,7 +158,7 @@ export default function LandingPage() {
           <p className="p-cta__message">「寿司職人専門」のキャリアアドバイザーが、<br />あなたのキャリアを無料サポート！</p>
           <div className="p-cta__button c-button">
             <img src="/lp/img/icon-cta.svg" alt="簡単!30秒" />
-            <Link href="/jobs">求人を見てみる (無料)</Link>
+            <Link href="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK">求人を見てみる (無料)</Link>
           </div>
         </section>
 
@@ -382,7 +384,7 @@ export default function LandingPage() {
               <p className="p-footer-cta__text--main">まずは無料の会員登録をして<br className="u-sp" />求人をチェック！</p>
               <div className="p-footer-cta__button c-button --large">
                 <img src="/lp/img/icon-cta-lg.svg" alt="簡単!30秒" />
-                <Link href="/jobs">求人を見てみる (無料)</Link>
+                <Link href="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK">求人を見てみる (無料)</Link>
               </div>
             </div>
           </div>
