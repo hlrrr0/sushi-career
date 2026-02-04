@@ -46,80 +46,8 @@ export default function ExitIntentPopup() {
 
   return (
     <>
-      {/* オーバーレイ */}
-      <div 
-        className="fixed inset-0 bg-black/50 z-50 animate-fade-in"
-        onClick={handleClose}
-      />
-      
-      {/* ポップアップ */}
-      <div className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] max-w-lg animate-scale-in">
-        <div className="bg-white rounded-lg shadow-2xl p-6 md:p-8 relative">
-          {/* 閉じるボタン */}
-          <button
-            onClick={handleClose}
-            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
-            aria-label="閉じる"
-          >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-
-          {/* コンテンツ */}
-          <div className="text-center">
-            <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-4">
-              ちょっと待って！<br />
-              あなたの理想の求人が<br className="md:hidden" />見つかるかも
-            </h3>
-            
-            <p className="text-gray-600 mb-6 text-sm md:text-base">
-              寿司職人専門のキャリアアドバイザーが<br />
-              無料であなたのキャリアをサポート！<br />
-              <strong className="text-red-600">今なら30秒で簡単登録</strong>
-            </p>
-
-            <div className="space-y-3 mb-6">
-              <div className="flex items-center justify-center gap-2 text-sm text-gray-700">
-                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>完全無料で利用可能</span>
-              </div>
-              <div className="flex items-center justify-center gap-2 text-sm text-gray-700">
-                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>200社以上の厳選求人</span>
-              </div>
-              <div className="flex items-center justify-center gap-2 text-sm text-gray-700">
-                <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                </svg>
-                <span>海外勤務の相談も可</span>
-              </div>
-            </div>
-
-            {/* CTAボタン */}
-            <Link 
-              href="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
-              className="block w-full bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-600 hover:to-red-700 text-white font-bold py-4 px-6 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105"
-            >
-              無料で求人を見てみる
-            </Link>
-
-            <button
-              onClick={handleClose}
-              className="mt-4 text-sm text-gray-500 hover:text-gray-700 transition-colors"
-            >
-              今はまだいいです
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <style jsx>{`
-        @keyframes fade-in {
+      <style jsx global>{`
+        @keyframes exitIntentFadeIn {
           from {
             opacity: 0;
           }
@@ -128,7 +56,7 @@ export default function ExitIntentPopup() {
           }
         }
 
-        @keyframes scale-in {
+        @keyframes exitIntentScaleIn {
           from {
             opacity: 0;
             transform: translate(-50%, -50%) scale(0.9);
@@ -139,14 +67,175 @@ export default function ExitIntentPopup() {
           }
         }
 
-        .animate-fade-in {
-          animation: fade-in 0.2s ease-out;
+        .exit-intent-overlay {
+          animation: exitIntentFadeIn 0.2s ease-out;
         }
 
-        .animate-scale-in {
-          animation: scale-in 0.3s ease-out;
+        .exit-intent-popup {
+          animation: exitIntentScaleIn 0.3s ease-out;
         }
       `}</style>
+
+      {/* オーバーレイ */}
+      <div 
+        className="exit-intent-overlay"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          zIndex: 9999
+        }}
+        onClick={handleClose}
+      />
+      
+      {/* ポップアップ */}
+      <div 
+        className="exit-intent-popup"
+        style={{
+          position: 'fixed',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: 10000,
+          width: '90%',
+          maxWidth: '500px'
+        }}
+      >
+        <div style={{
+          backgroundColor: 'white',
+          borderRadius: '12px',
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+          padding: '24px',
+          position: 'relative'
+        }}>
+          {/* 閉じるボタン */}
+          <button
+            onClick={handleClose}
+            style={{
+              position: 'absolute',
+              top: '16px',
+              right: '16px',
+              color: '#9ca3af',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '4px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+            aria-label="閉じる"
+            onMouseEnter={(e) => e.currentTarget.style.color = '#4b5563'}
+            onMouseLeave={(e) => e.currentTarget.style.color = '#9ca3af'}
+          >
+            <svg style={{ width: '24px', height: '24px' }} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* コンテンツ */}
+          <div style={{ textAlign: 'center' }}>
+            <h3 style={{
+              fontSize: '24px',
+              fontWeight: 'bold',
+              color: '#1f2937',
+              marginBottom: '16px',
+              lineHeight: '1.4'
+            }}>
+              ちょっと待って！<br />
+              あなたの理想の求人が見つかるかも
+            </h3>
+            
+            <p style={{
+              color: '#4b5563',
+              marginBottom: '24px',
+              fontSize: '14px',
+              lineHeight: '1.6'
+            }}>
+              寿司職人専門のキャリアアドバイザーが<br />
+              無料であなたのキャリアをサポート！<br />
+              <strong style={{ color: '#dc2626' }}>今なら30秒で簡単登録</strong>
+            </p>
+
+            <div style={{ marginBottom: '24px' }}>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                fontSize: '14px',
+                color: '#374151',
+                marginBottom: '12px'
+              }}>
+                <svg style={{ width: '20px', height: '20px', color: '#22c55e', flexShrink: 0 }} fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>完全無料で利用可能</span>
+              </div>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                fontSize: '14px',
+                color: '#374151',
+                marginBottom: '12px'
+              }}>
+                <svg style={{ width: '20px', height: '20px', color: '#22c55e', flexShrink: 0 }} fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>200社以上の厳選求人</span>
+              </div>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                fontSize: '14px',
+                color: '#374151'
+              }}>
+                <svg style={{ width: '20px', height: '20px', color: '#22c55e', flexShrink: 0 }} fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>海外勤務の相談も可</span>
+              </div>
+            </div>
+
+            {/* CTAボタン */}
+            <Link 
+              href="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
+              style={{
+                display: 'block',
+                width: '100%',
+                background: 'linear-gradient(to right, #f97316, #dc2626)',
+                color: 'white',
+                fontWeight: 'bold',
+                padding: '16px 24px',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                transition: 'all 0.2s',
+                boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)',
+                fontSize: '16px'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'linear-gradient(to right, #ea580c, #b91c1c)';
+                e.currentTarget.style.transform = 'scale(1.02)';
+                e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.1)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'linear-gradient(to right, #f97316, #dc2626)';
+                e.currentTarget.style.transform = 'scale(1)';
+                e.currentTarget.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1)';
+              }}
+            >
+              無料で求人を見てみる
+            </Link>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

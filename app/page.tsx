@@ -408,7 +408,7 @@ export default function LandingPage() {
               <li className="p-footer__item"><Link href="/terms">利用規約</Link></li>
               <li className="p-footer__item"><Link href="/privacy">プライバシーポリシー</Link></li>
             </ul>
-            <ul className="p-footer__sns">
+            {/* <ul className="p-footer__sns">
               <li className="p-footer__sns-item">
                 <a href="#" target="_blank" rel="nofollow noopener">
                   <img src="/lp/img/Instagram.svg" alt="インスタグラム" width={40} height={40} />
@@ -419,7 +419,7 @@ export default function LandingPage() {
                   <img src="/lp/img/X.svg" alt="X" width={40} height={40} />
                 </a>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
         <div className="p-footer__copyright">
