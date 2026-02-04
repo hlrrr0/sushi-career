@@ -19,13 +19,25 @@ export default function Header() {
             />
           </Link>
           
-          <nav className="hidden sm:flex space-x-6">
-            <Link
+          <nav className="hidden sm:flex items-center space-x-6">
+            {/* <Link
               href="/"
               className="text-white hover:text-gray-300 transition-colors"
             >
               求人一覧
+            </Link> */}
+            <Link
+              href="/contact"
+              className="text-white hover:text-gray-300 transition-colors"
+            >
+              お問い合わせ
             </Link>
+            {/* <Link
+              href="/apply"
+              className="px-4 py-2 bg-orange-600 hover:bg-orange-700 text-white rounded-lg transition-colors font-bold"
+            >
+              求人応募
+            </Link> */}
           </nav>
         </div>
       </div>
