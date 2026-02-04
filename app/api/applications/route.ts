@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { supabase } from '@/lib/supabase';
 import { JobApplication } from '@/lib/types/database';
+import { notifyApplicationCompleted } from '@/lib/utils/slack';
 
 export async function POST(request: NextRequest) {
   try {
@@ -47,6 +48,13 @@ export async function PUT(request: NextRequest) {
       return NextResponse.json(
         { error: 'Failed to update application', details: error.message },
         { status: 500 }
+      );
+    }
+
+    // 応募が完了した場合のみSlack通知を送信
+    if (data.status === 'completed' && data.completed_at) {
+      notifyApplicationCompleted(data).catch(err => 
+        console.error('Failed to send Slack notification:', err)
       );
     }
 

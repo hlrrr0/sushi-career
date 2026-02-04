@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getServiceSupabase } from '@/lib/supabase';
 import { ContactInquiry } from '@/lib/types/database';
+import { notifyContactInquiry } from '@/lib/utils/slack';
 
 export async function POST(request: NextRequest) {
   try {
@@ -20,6 +21,11 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    // Slack通知を送信（非同期、エラーは無視）
+    notifyContactInquiry(data).catch(err => 
+      console.error('Failed to send Slack notification:', err)
+    );
 
     return NextResponse.json({ data }, { status: 200 });
   } catch (error) {
