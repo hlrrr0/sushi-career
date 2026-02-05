@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 
 export const metadata: Metadata = {
   title: 'プライバシーポリシー',
@@ -114,10 +115,12 @@ export default function PrivacyPage() {
             8. お問い合わせ
           </h2>
           <p className="text-gray-700 leading-relaxed">
-            本ポリシーに関するお問い合わせは、以下のメールアドレスまでご連絡ください。
+            本ポリシーに関するお問い合わせは、以下のフォームよりご連絡ください。
           </p>
-          <p className="text-gray-700 mt-2">
-            Email: <a href={`mailto:${contactEmail}`} className="text-blue-600 hover:text-blue-700">{contactEmail}</a>
+          <p className="text-gray-700 mt-4">
+            <Link href="/contact" className="inline-block px-6 py-3 bg-orange-500 text-white font-bold rounded-lg hover:bg-orange-600 transition-colors">
+              お問い合わせフォームへ
+            </Link>
           </p>
         </section>
 
