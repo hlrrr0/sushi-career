@@ -455,8 +455,8 @@ export default function LandingPage() {
           </div>
         </div>
         <div className="p-footer__copyright">
-          <small className="u-pc">copyright &copy; Super Shift.Inc , all rights reserved.</small>
-          <small className="u-sp">copyright<br />&copy; Super Shift.Inc , all rights reserved.</small>
+          <small className="u-pc">copyright &copy; 鮨キャリ, all rights reserved.</small>
+          <small className="u-sp">copyright<br />&copy; 鮨キャリ, all rights reserved.</small>
         </div>
       </footer>
     </>
