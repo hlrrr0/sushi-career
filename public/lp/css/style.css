@@ -938,6 +938,20 @@ select {
   letter-spacing: 0.05em;
 }
 
+/* LP用（4文字「爆速成長」等）のスタイル */
+.p-fv__text-wrapper--4chars .p-fv__carrier-up:nth-of-type(1) {
+  letter-spacing: 0.1em;
+}
+.p-fv__text-wrapper--4chars .p-fv__carrier-up:nth-of-type(2) {
+  letter-spacing: 0.1em;
+}
+.p-fv__text-wrapper--4chars .p-fv__carrier-up:nth-of-type(3) {
+  letter-spacing: 0.1em;
+}
+.p-fv__text-wrapper--4chars .p-fv__carrier-up:nth-of-type(4) {
+  letter-spacing: 0.1em;
+}
+
 .p-fv__text {
   font-size: 0.875rem;
   font-weight: 400;

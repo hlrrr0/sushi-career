@@ -10,7 +10,7 @@ export default function ConditionalLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const isLandingPage = pathname === '/' || pathname.startsWith('/lp/');
+  const isLandingPage = pathname === '/' || pathname.startsWith('/lp/') || pathname === '/apply/tsukiji-aozora';
 
   if (isLandingPage) {
     // LPページはヘッダー・フッターなし

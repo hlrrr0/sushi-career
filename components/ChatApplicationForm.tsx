@@ -15,7 +15,13 @@ interface FormData {
   phone: string;
 }
 
-export default function ChatApplicationForm() {
+export default function ChatApplicationForm({ 
+  greeting = 'こんにちは！鮨キャリアドバイザーです🍣',
+  intro = 'あなたに最適な求人をご紹介するため、いくつか質問させてください。1分程度で完了します。'
+}: {
+  greeting?: string;
+  intro?: string;
+} = {}) {
   const [step, setStep] = useState<Step>(1);
   const [formData, setFormData] = useState<FormData>({
     desiredTiming: '',
@@ -218,8 +224,8 @@ export default function ChatApplicationForm() {
         backgroundColor: '#ffffff'
       }}>
         {/* 初回メッセージ */}
-        <ChatBubble message="こんにちは！鮨キャリアドバイザーです🍣" />
-        <ChatBubble message="あなたに最適な求人をご紹介するため、いくつか質問させてください。1分程度で完了します。" />
+        <ChatBubble message={greeting} />
+        <ChatBubble message={intro} />
 
         {/* Step 1: 転職希望時期 */}
         {step >= 1 && (
@@ -669,6 +675,7 @@ function PrefectureSelector({ onSelect }: { onSelect: (value: string) => void })
   const inputRef = useRef<HTMLInputElement>(null);
 
   const prefectures = [
+    '希望なし',
     '北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県',
     '茨城県', '栃木県', '群馬県', '埼玉県', '千葉県', '東京都', '神奈川県',
     '新潟県', '富山県', '石川県', '福井県', '山梨県', '長野県',
