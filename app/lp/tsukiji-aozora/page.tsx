@@ -21,7 +21,7 @@ export default function TsukijiAozoraLP() {
           </picture>
 
           <div className="p-fv__text-wrapper p-fv__text-wrapper--4chars">
-            <p className="p-fv__lead">
+            <p className="p-fv__lead" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.5)' }}>
               <img src="/lp/img/fv-text.svg" alt="寿司職人" />で、<br />
               <span className="--margin">
                 <span className="p-fv__carrier-up">爆</span>
@@ -32,7 +32,7 @@ export default function TsukijiAozoraLP() {
               </span>
               <br /><span className="--height">実現するなら。</span>
             </p>
-            <div className="p-fv__text">
+            <div className="p-fv__text" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.5)' }}>
               「下積み10年」を、3ヶ月でショートカットしろ。<br />入社即、寿司学校へ。学費全額会社負担。<br />築地100年の伝統と革新の技術を、最短で。
             </div>
           </div>
