@@ -20,7 +20,7 @@ export default function OverseasLP() {
             <img src="/lp/img/sp/fv-sp.jpg" alt="寿司職人" width={390} height={848} />
           </picture>
           <h1 className="p-fv__logo">
-            <img src="/lp/img/logo-white.png" alt="飲食人・寿司キャリア" />
+            <img src="/lp/img/logo-white.png" alt="鮨キャリ" />
           </h1>
           <div className="p-fv__text-wrapper p-fv__text-wrapper--5chars">
             <p className="p-fv__lead">
@@ -57,7 +57,7 @@ export default function OverseasLP() {
 
         <section className="p-feature">
           <div className="l-inner">
-            <h2 className="c-heading">"飲食人・<br className="u-sp" />寿司キャリア"の特徴</h2>
+            <h2 className="c-heading">"鮨キャリ"の特徴</h2>
             <div className="p-feature__boxes">
               <div className="p-feature__box --01">
                 <h3 className="p-feature__heading">
@@ -425,7 +425,7 @@ export default function OverseasLP() {
         <div className="p-footer__inner">
           <div className="p-footer__left">
             <div className="p-footer__logo">
-              <img src="/lp/img/logo.png" alt="飲食人・寿司キャリア" width={229} height={32} />
+              <img src="/lp/img/logo.png" alt="鮨キャリ" width={229} height={32} />
             </div>
             <div className="p-footer__info">
               <div className="p-footer__button">
