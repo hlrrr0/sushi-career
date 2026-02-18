@@ -137,7 +137,7 @@ export default async function ArticlePage({ params }: Props) {
 
           {/* 記事本文 */}
           <div
-            className="prose prose-lg max-w-none"
+            className="ProseMirror max-w-none"
             dangerouslySetInnerHTML={{ __html: article.content }}
           />
         </div>
