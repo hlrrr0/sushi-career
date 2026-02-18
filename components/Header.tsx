@@ -27,6 +27,12 @@ export default function Header() {
               求人一覧
             </Link> */}
             <Link
+              href="/columns"
+              className="text-white hover:text-gray-300 transition-colors"
+            >
+              コラム
+            </Link>
+            <Link
               href="/contact"
               className="text-white hover:text-gray-300 transition-colors"
             >

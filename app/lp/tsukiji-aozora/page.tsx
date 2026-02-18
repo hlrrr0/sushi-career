@@ -348,7 +348,7 @@ export default function TsukijiAozoraLP() {
           <div className="l-inner">
             <div className="p-footer-cta__contents">
               <p className="p-footer-cta__text--sub">「面白い若手が来た」と、俺に言わせてみろ。</p>
-              <p className="p-footer-cta__text--main">経験も、知識も、今はなくていい。<br className="u-sp" />必要なのは、このチャンスを掴み取る「握力」だけだ。</p>
+              <p className="p-footer-cta__text--main">経験も、知識も、今はなくていい。<br />必要なのは、このチャンスを掴み取る「握力」だけだ。</p>
               <div className="p-footer-cta__button c-button --large">
                 <img src="/lp/img/icon-cta-lg.svg" alt="簡単!30秒" />
                 <DeviceAwareLink 
