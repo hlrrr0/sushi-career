@@ -3,8 +3,8 @@ import ExitIntentPopup from '@/components/ExitIntentPopup';
 import DeviceAwareLink from '@/components/DeviceAwareLink';
 
 export const metadata = {
-  title: '世界初業態「肉を焼かない焼肉」で、世界を驚かせろ | 焼うおいし川 採用',
-  description: '築地発、10年の歳月をかけて誕生した革命的業態。魚を鉄板で焼く、誰も見たことがない焼肉。多数メディア掲載、全国・海外展開中。拡大期だからこそのチャンスを掴め。',
+  title: '鮨を、再定義せよ。常識を壊す、世界初業態の旗振り役へ | 焼うおいし川 採用',
+  description: '伝統を守るな、武器にしろ。100年の築地が生んだ「発明」で、世界のスタンダードを創る。職人からクリエイターへ。',
 };
 
 export default function YakuoIshikawaLP() {
@@ -16,32 +16,30 @@ export default function YakuoIshikawaLP() {
       <main className="l-main">
         <div className="p-fv">
           <picture className="p-fv__img">
-            <source media="(min-width: 768px)" srcSet="/lp/img/aozora_fv.jpeg" />
-            <img src="/lp/img/aozora_fv_sp.jpeg" alt="焼うおいし川" width={390} height={848} />
+            <source media="(min-width: 768px)" srcSet="/lp/img/aozora_yakiuo.jpeg" />
+            <img src="/lp/img/aozora_yakiuo_fv_sp.png" alt="焼うおいし川" width={390} height={848} />
           </picture>
 
           <div className="p-fv__text-wrapper p-fv__text-wrapper--4chars">
             <p className="p-fv__lead" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.5)' }}>
               <span className="--margin">
-                <span className="p-fv__carrier-up">世</span>
-                <span className="p-fv__carrier-up">界</span>
-                <span className="p-fv__carrier-up">初</span>
-                <span className="--space">の</span>
+                <span className="p-fv__carrier-up">鮨</span>
+                <span className="--space">を、</span>
               </span>
               <br />
               <span className="--margin">
-                <span className="p-fv__carrier-up">革</span>
-                <span className="p-fv__carrier-up">命</span>
-              </span>に、<br />
-              <span className="--height">お前も参加しろ。</span>
+                <span className="p-fv__carrier-up">再</span>
+                <span className="p-fv__carrier-up">定</span>
+                <span className="p-fv__carrier-up">義</span>
+              </span><span className="--height">せよ。</span>
             </p>
             <div className="p-fv__text" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), 0 0 8px rgba(0, 0, 0, 0.5)' }}>
-              「肉を焼かない焼肉」焼うおいし川。<br />築地発、10年の歳月をかけて生まれた、<br />誰も見たことがない、魚の鉄板焼き。
+              100年の築地が生んだ「発明」。<br />業界のルールは、俺たちが書き換えた。<br />伝統を守るな、武器にしろ。
             </div>
           </div>
           <div className="p-fv__box">
             <p className="p-fv__message">
-              全国・海外展開中。今、このビッグウェーブに乗れ。
+              職人じゃない、クリエイターになれ。常識を壊す、世界初業態の旗振り役へ。
             </p>
             <div className="c-button">
               <img src="/lp/img/icon-cta.svg" alt="簡単!30秒" />
@@ -57,37 +55,38 @@ export default function YakuoIshikawaLP() {
 
         <section className="p-feature">
           <div className="l-inner">
-            <h2 className="c-heading" style={{ marginBottom: '2rem' }}>「肉を焼かない焼肉」が、<br className="u-sp" />世界を変える。</h2>
+            <h2 className="c-heading" style={{ marginBottom: '2rem' }}>これは単なる飲食店じゃない。<br className="u-sp" />「発明」だ。</h2>
             <p style={{ textAlign: 'center', fontSize: '1.1rem', lineHeight: '2', marginTop: '1.5rem', marginBottom: '3rem', maxWidth: '900px', margin: '0 auto 3rem' }}>
-              創業者が10年の歳月をかけて、築地から世界へ問う。<br />
-              <strong>「業界史上初」「世界初業態」</strong>として、国内外から大きな賞賛。<br /><br />
-              魚を鉄板で焼く。寿司でもない、焼肉でもない。<br />
-              この革命的な料理スタイルを、世界中に届けるメンバーを募集する。<br />
-              <strong>多数のメディア掲載、大繁盛店。そして今、拡大期真っ只中。</strong>
+              「肉を焼かない焼肉」として世界を驚かせた『焼うお いし川』。<br />
+              <strong>これは、100年の歴史を持つ築地の魚問屋が、常識をぶち壊して生み出した「発明」だ。</strong><br /><br />
+              お前に求めるのは、伝統を守ることじゃない。<br />
+              <strong>伝統を武器に、新しいスタンダードを創ることだ。</strong><br /><br />
+              国内外のメディアを席巻し、世界各地への展開を加速させるこの爆発力を、<br />
+              お前のキャリアの追い風にしろ。
             </p>
             <div className="p-feature__boxes">
               <div className="p-feature__box">
                 <h3 className="p-feature__heading">
-                  <span className="p-feature__heading-top">世界初業態</span>
-                  <span className="p-feature__heading-bottom">革命の最前線</span>
+                  <span className="p-feature__heading-top">「焼うお」という</span>
+                  <span className="p-feature__heading-bottom">唯一無二の武器</span>
                 </h3>
-                <p className="p-feature__text --01">「肉を焼かない焼肉」。魚を鉄板で焼いて提供する、誰も見たことがないスタイル。創業者が1,000個以上のアイデアを経て、10年かけて完成させた。国内外から賞賛される革命的業態の立ち上げメンバーとして、歴史を刻め。</p>
+                <p className="p-feature__text --01">「鮨」の技術をベースに、エンターテインメント性を掛け合わせた新業態。国内外のメディアを席巻するこの爆発力を、お前のキャリアの追い風にしろ。1,000個以上のアイデアから生まれた、他のどこにもない「発明」を武器に戦え。</p>
                 <div className="p-feature__number"><img src="/lp/img/feature-01.svg" alt="01" /></div>
               </div>
               <div className="p-feature__box">
                 <h3 className="p-feature__heading">
-                  <span className="p-feature__heading-top">全国・海外展開</span>
-                  <span className="p-feature__heading-bottom">加速する出店ペース</span>
+                  <span className="p-feature__heading-top">世界各地への</span>
+                  <span className="p-feature__heading-bottom">「侵略」</span>
                 </h3>
-                <p className="p-feature__text">築地から始まり、今や全国、そして世界各地への出店が加速中。拡大期だからこそ、多くの優秀な人材を募集している。新店舗の立ち上げ、海外進出、マネジメント。ワクワクするスピード感の中で、お前のキャリアも爆速成長させろ。</p>
+                <p className="p-feature__text">現在、世界展開を加速中。マニュアルをなぞる仕事ではない。その土地の文化と「焼うお」を融合させる、最前線のクリエイティブな現場。世界のスタンダードを創る旗振り役として、お前が歴史を刻め。</p>
                 <div className="p-feature__number"><img src="/lp/img/feature-02.svg" alt="02" /></div>
               </div>
               <div className="p-feature__box">
                 <h3 className="p-feature__heading">
-                  <span className="p-feature__heading-top">多数メディア掲載</span>
-                  <span className="p-feature__heading-bottom">大繁盛店の証明</span>
+                  <span className="p-feature__heading-top">「職人」から</span>
+                  <span className="p-feature__heading-bottom">「クリエイター」へ</span>
                 </h3>
-                <p className="p-feature__text --03">革新的業態として、多数のメディアで紹介され続ける大繁盛店。築地の伝統的な魚を新しい形で提供し、築地を盛り上げる。日本伝統食の進化に携わり、これからの日本料理文化を創造する。その最前線で、お前も戦え。</p>
+                <p className="p-feature__text --03">ただ握る、ただ切るだけではない。どうすればお客様を驚かせられるか、どうすれば世界一になれるか。脳をフル回転させる体育会系・実力主義。既存の枠に収まりたくない、トレンドの仕掛け人になりたいお前のための場所だ。</p>
                 <div className="p-feature__number"><img src="/lp/img/feature-03.svg" alt="03" /></div>
               </div>
             </div>
@@ -97,23 +96,23 @@ export default function YakuoIshikawaLP() {
 
         <section className="l-section p-job" style={{ background: '#fafafa', padding: '5rem 0' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
-            <h2 className="c-heading --job" style={{ marginBottom: '4rem', fontSize: '2.5rem', fontWeight: 'bold' }}>数字で見る、焼うおいし川</h2>
+            <h2 className="c-heading --job" style={{ marginBottom: '4rem', fontSize: '2.5rem', fontWeight: 'bold' }}>数字が証明する、爆発力</h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem', textAlign: 'center' }}>
               <div style={{ background: 'white', padding: '2.5rem 1.5rem', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
                 <div style={{ fontSize: '4rem', fontWeight: '900', color: '#c41e3a', marginBottom: '1rem', lineHeight: '1', fontFamily: '"Hiragino Sans", "ヒラギノ角ゴシック", sans-serif' }}>世界初</div>
-                <p style={{ fontSize: '0.95rem', lineHeight: '1.6', fontWeight: '600', color: '#333' }}>業界史上初・世界初業態<br />「肉を焼かない焼肉」</p>
+                <p style={{ fontSize: '0.95rem', lineHeight: '1.6', fontWeight: '600', color: '#333' }}>誰も見たことがない「発明」<br />常識をぶち壊した新業態</p>
               </div>
               <div style={{ background: 'white', padding: '2.5rem 1.5rem', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
-                <div style={{ fontSize: '4rem', fontWeight: '900', color: '#c41e3a', marginBottom: '1rem', lineHeight: '1', fontFamily: '"Hiragino Sans", "ヒラギノ角ゴシック", sans-serif' }}>10年</div>
-                <p style={{ fontSize: '0.95rem', lineHeight: '1.6', fontWeight: '600', color: '#333' }}>創業者が歳月をかけて<br />開発した革新的業態</p>
+                <div style={{ fontSize: '3.2rem', fontWeight: '900', color: '#c41e3a', marginBottom: '1rem', lineHeight: '1', fontFamily: '"Hiragino Sans", "ヒラギノ角ゴシック", sans-serif' }}>1,000個+</div>
+                <p style={{ fontSize: '0.95rem', lineHeight: '1.6', fontWeight: '600', color: '#333' }}>検証したアイデア数<br />10年の歳月の結晶</p>
               </div>
               <div style={{ background: 'white', padding: '2.5rem 1.5rem', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
-                <div style={{ fontSize: '3.4rem', fontWeight: '900', color: '#c41e3a', marginBottom: '1rem', lineHeight: '1', fontFamily: '"Hiragino Sans", "ヒラギノ角ゴシック", sans-serif' }}>全国・海外</div>
-                <p style={{ fontSize: '0.95rem', lineHeight: '1.6', fontWeight: '600', color: '#333' }}>拡大中のスピード感<br />世界各地への出店加速</p>
+                <div style={{ fontSize: '3.4rem', fontWeight: '900', color: '#c41e3a', marginBottom: '1rem', lineHeight: '1', fontFamily: '"Hiragino Sans", "ヒラギノ角ゴシック", sans-serif' }}>世界展開</div>
+                <p style={{ fontSize: '0.95rem', lineHeight: '1.6', fontWeight: '600', color: '#333' }}>加速する「侵略」<br />新スタンダード創造中</p>
               </div>
               <div style={{ background: 'white', padding: '2.5rem 1.5rem', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
                 <div style={{ fontSize: '4rem', fontWeight: '900', color: '#c41e3a', marginBottom: '1rem', lineHeight: '1', fontFamily: '"Hiragino Sans", "ヒラギノ角ゴシック", sans-serif' }}>多数</div>
-                <p style={{ fontSize: '0.95rem', lineHeight: '1.6', fontWeight: '600', color: '#333' }}>メディア掲載・紹介多数<br />注目度抜群の大繁盛店</p>
+                <p style={{ fontSize: '0.95rem', lineHeight: '1.6', fontWeight: '600', color: '#333' }}>国内外メディア席巻<br />トレンドを仕掛ける側</p>
               </div>
             </div>
           </div>
@@ -121,7 +120,7 @@ export default function YakuoIshikawaLP() {
 
         <section className="l-section" style={{ padding: '5rem 0', background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
           <div className="l-inner">
-            <h2 className="c-heading --white" style={{ marginBottom: '3rem' }}>10年の歳月が生んだ、革命</h2>
+            <h2 className="c-heading --white" style={{ marginBottom: '3rem' }}>業界のルールは、俺たちが書き換えた。</h2>
             <div style={{ background: 'rgba(255,255,255,0.95)', padding: '3rem 2rem', borderRadius: '12px', maxWidth: '900px', margin: '0 auto' }}>
               <div style={{ fontSize: '1.1rem', lineHeight: '2.2', color: '#333' }}>
                 <p style={{ marginBottom: '1.5rem' }}>
@@ -129,18 +128,18 @@ export default function YakuoIshikawaLP() {
                   築地が消滅する可能性があった。
                 </p>
                 <p style={{ marginBottom: '1.5rem', fontWeight: '600', color: '#c41e3a' }}>
-                  「築地を盛り上げる名物を、俺が作る。」
+                  「築地を盛り上げる名物を、俺が『発明』する。」
                 </p>
                 <p style={{ marginBottom: '1.5rem' }}>
-                  築地青空三代目を営んでから、10年間ずっと悩み続けた。<br />
-                  日本国内や海外に移住し、ビジネスアイデアを<strong>1,000個以上</strong>考えたが、どれも納得いかなかった。
+                  10年間、悩み続けた。世界中を飛び回り、<strong>1,000個以上</strong>のアイデアを検証した。<br />
+                  どれも納得いかなかった。既存の延長線上にあるものは、作る意味がなかった。
                 </p>
                 <p style={{ marginBottom: '1.5rem' }}>
-                  上海、沖縄、名古屋——移住した先々で食べているものが変わっていることに気づいた。<br />
-                  その3つを一緒に楽しめる業態を考えた時、沖縄の北谷で自身が営んでいた焼肉屋「北谷龍」からヒントを見つけた。
+                  上海、沖縄、名古屋——移住した先々で、文化が違えば食も変わる。<br />
+                  その全てに対応できる「新しいスタンダード」を創りたかった。
                 </p>
                 <p style={{ fontWeight: '600', fontSize: '1.2rem', color: '#c41e3a', textAlign: 'center', marginTop: '2rem', padding: '1.5rem', background: '#fff5f5', borderRadius: '8px' }}>
-                  場所を問わず鮨が楽しめる「肉を焼かない焼肉」が、ここに誕生した。
+                  「鮨」でも「焼肉」でもない——築地100年の伝統を武器に、常識をぶち壊した。<br />それが「焼うお いし川」だ。
                 </p>
               </div>
             </div>
@@ -148,7 +147,7 @@ export default function YakuoIshikawaLP() {
         </section>
 
         <section className="p-cta">
-          <p className="p-cta__message">革命は、築地から始まる。<br />世界を驚かせる最前線に、今すぐ立て。</p>
+          <p className="p-cta__message">伝統を守るな、武器にしろ。<br />常識を壊す、クリエイターになれ。</p>
           <div className="p-cta__button c-button">
             <img src="/lp/img/icon-cta.svg" alt="簡単!30秒" />
             <DeviceAwareLink 
@@ -293,12 +292,12 @@ export default function YakuoIshikawaLP() {
             <h2 className="c-heading --case">先輩スタッフの声</h2>
             <div className="p-case__boxes">
               <div className="p-case__box">
-                <p className="p-case__heading">世界初業態の立ち上げに<br className="u-pc" />関われる刺激的な毎日</p>
-                <p className="p-case__text">誰も見たことがない料理スタイルだから、毎日が発見の連続。お客様の「これ、すごいね！」という驚きの声が、仕事のやりがいに直結しています。メディア取材も多く、自分たちが歴史を作っている実感があります。拡大期だから新店舗も続々とオープン予定で、キャリアの選択肢も広がります。</p>
+                <p className="p-case__heading">職人じゃない、<br className="u-pc" />クリエイターとして働ける</p>
+                <p className="p-case__text">マニュアル通りの仕事じゃない。どう驚かせるか、どう文化と融合させるか、毎日が脳をフル回転させる刺激的な現場。お客様の「こんなの初めて！」という声が、自分のクリエイティブを証明する瞬間。メディア取材も多く、トレンドを「仕掛ける側」の快感がある。</p>
                 <ul className="p-case__list">
-                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />世界初業態の最前線</li>
-                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />メディア掲載多数の注目度</li>
-                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />新店舗続々オープン予定</li>
+                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />クリエイティブな現場</li>
+                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />トレンドの仕掛け人</li>
+                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />実力主義の環境</li>
                 </ul>
                 <div className="p-case__profile">
                   <div className="p-case__icon"><img src="/lp/img/case-icon.svg" alt="顔アイコン" /></div>
@@ -306,12 +305,12 @@ export default function YakuoIshikawaLP() {
                 </div>
               </div>
               <div className="p-case__box">
-                <p className="p-case__heading">拡大期だからこそ、<br className="u-pc" />若手にもチャンスがある環境</p>
-                <p className="p-case__text">全国・海外展開が加速しているので、スピード感がすごいです。新店舗の立ち上げメンバーとして参加したり、トレーナーとして新人教育に携わったり。普通なら何年もかかるポジションに、入社数年で挑戦できる。アットホームな職場で、先輩たちが丁寧にOJTで教えてくれるので、未経験でも安心でした。</p>
+                <p className="p-case__heading">世界の「侵略」に<br className="u-pc" />最前線で参加できる</p>
+                <p className="p-case__text">世界展開が加速中で、ただの現場作業じゃない。その土地の文化を理解し、「焼うお」を融合させる——それが俺たちの仕事。新店立ち上げ、海外進出、新メニュー開発。既存の枠に収まらない、世界のスタンダードを創る最前線。年齢や経験じゃない、アイデアと実力で勝負できる。</p>
                 <ul className="p-case__list">
-                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />拡大期のスピード感</li>
-                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />若手への抜擢文化</li>
-                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />OJTで丁寧に指導</li>
+                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />世界展開の最前線</li>
+                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />文化融合のクリエイティブ</li>
+                  <li className="p-case__item"><img src="/lp/img/check.svg" alt="" />実力で勝負できる</li>
                 </ul>
                 <div className="p-case__profile">
                   <div className="p-case__icon"><img src="/lp/img/case-icon.svg" alt="顔アイコン" /></div>
@@ -332,7 +331,7 @@ export default function YakuoIshikawaLP() {
                 </div>
                 <div className="p-faq__text">
                   <p className="p-faq__q">料理未経験でも応募できますか？</p>
-                  <p className="p-faq__a">はい、未経験でも大歓迎です。OJT形式で丁寧に指導しますので、ご安心ください。</p>
+                  <p className="p-faq__a">はい、クリエイティブな発想と実力主義の環境に挑戦したい意欲があれば歓迎します。</p>
                 </div>
               </div>
               <div className="p-faq__box">
@@ -340,8 +339,8 @@ export default function YakuoIshikawaLP() {
                   <img src="/lp/img/faq-q.svg" alt="Q" />
                 </div>
                 <div className="p-faq__text">
-                  <p className="p-faq__q --word">「肉を焼かない焼肉」とは？</p>
-                  <p className="p-faq__a">魚を鉄板で焼いて提供する、世界初の業態です。寿司でも焼肉でもない、革新的なスタイルです。</p>
+                  <p className="p-faq__q --word">「焼うお」とは？</p>
+                  <p className="p-faq__a">築地100年の伝統を武器に、常識をぶち壊して生まれた「発明」です。鮨の技術×エンターテインメントの新業態。</p>
                 </div>
               </div>
               <div className="p-faq__box">
@@ -359,7 +358,7 @@ export default function YakuoIshikawaLP() {
                 </div>
                 <div className="p-faq__text">
                   <p className="p-faq__q --word">どんな人材を求めていますか？</p>
-                  <p className="p-faq__a">革新的な業態に挑戦する意欲、向上心、チームワークを大切にできる方を歓迎します。</p>
+                  <p className="p-faq__a">既存の枠に収まりたくない、クリエイティブな仕事がしたい、トレンドの仕掛け人になりたい人。</p>
                 </div>
               </div>
               <div className="p-faq__box">
@@ -378,8 +377,8 @@ export default function YakuoIshikawaLP() {
         <section className="p-footer-cta">
           <div className="l-inner">
             <div className="p-footer-cta__contents">
-              <p className="p-footer-cta__text--sub">築地から世界へ。革命の最前線で、お前の人生を賭けろ。</p>
-              <p className="p-footer-cta__text--main">世界初業態「肉を焼かない焼肉」。<br />この歴史的瞬間に、立ち会え。</p>
+              <p className="p-footer-cta__text--sub">伝統を守るな、武器にしろ。職人じゃない、クリエイターになれ。</p>
+              <p className="p-footer-cta__text--main">鮨を、再定義せよ。<br />常識を壊す、世界初業態の旗振り役へ。</p>
               <div className="p-footer-cta__button c-button --large">
                 <img src="/lp/img/icon-cta-lg.svg" alt="簡単!30秒" />
                 <DeviceAwareLink 
