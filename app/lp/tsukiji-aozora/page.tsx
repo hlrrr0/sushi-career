@@ -242,18 +242,21 @@ export default function TsukijiAozoraLP() {
                     <div className="p-flow__symbol u-pc">
                       <img src="/lp/img/flow-arrow-dash.svg" alt="" />
                     </div>
-                    <p className="p-flow__text">飲食人大学で修行</p>
+                    <p className="p-flow__text">飲食人大学で修行（希望者）</p>
                   </div>
                   <div className="p-flow__img">
                     <img className="u-pc" src="/lp/img/flow-icon6.png" alt="ステップ" />
                     <img className="u-sp" src="/lp/img/sp/flow-icon6-sp.png" alt="ステップ" />
                   </div>
                   <p className="p-flow__message">
-                    入社後、3ヶ月間<br className="u-pc" />寿司学校で徹底指導!
+                    希望者は入社後、3ヶ月間<br className="u-pc" />寿司学校で徹底指導!
                   </p>
                 </div>
               </div>
             </div>
+            <p style={{ textAlign: 'center', fontSize: '0.875rem', color: '#6b7280', marginTop: '2rem' }}>
+              ※ 特別選考あり
+            </p>
           </div>
         </section>
 
@@ -310,7 +313,7 @@ export default function TsukijiAozoraLP() {
                 </div>
                 <div className="p-faq__text">
                   <p className="p-faq__q --word">飲食人大学の学費は本当に無料？</p>
-                  <p className="p-faq__a">はい、数十万円かかる学費を会社が全額負担します。あなたへの期待の証です。</p>
+                  <p className="p-faq__a">はい、100万円ほどかかる学費を会社が全額負担します。あなたへの期待の証です。</p>
                 </div>
               </div>
               <div className="p-faq__box">

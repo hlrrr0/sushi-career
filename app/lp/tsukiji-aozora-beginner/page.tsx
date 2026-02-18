@@ -55,7 +55,7 @@ export default function TsukijiAozoraBeginnerLP() {
               「経験がない」「技術がない」「お金がない」<br />
               それ、全部、俺たちが解決する。<br /><br />
               <strong>お前が持ってくるのは、「やる気」だけでいい。</strong><br />
-              数十万円かかる飲食人大学の学費、会社が全額負担。<br />
+              100万円ほどかかる飲食人大学の学費、会社が全額負担。<br />
               創業100年の問屋直送ネタで、毎日が一流の修行。<br />
               未経験からミシュラン星獲得者まで輩出した実績。<br />
               リスクゼロで、お前の人生を変えるチャンスがここにある。
@@ -240,18 +240,21 @@ export default function TsukijiAozoraBeginnerLP() {
                     <div className="p-flow__symbol u-pc">
                       <img src="/lp/img/flow-arrow-dash.svg" alt="" />
                     </div>
-                    <p className="p-flow__text">飲食人大学で修行</p>
+                    <p className="p-flow__text">飲食人大学で修行（希望者）</p>
                   </div>
                   <div className="p-flow__img">
                     <img className="u-pc" src="/lp/img/flow-icon6.png" alt="ステップ" />
                     <img className="u-sp" src="/lp/img/sp/flow-icon6-sp.png" alt="ステップ" />
                   </div>
                   <p className="p-flow__message">
-                    入社後、3ヶ月間<br className="u-pc" />寿司学校で徹底指導!<br />学費は全額会社負担
+                    希望者は入社後、3ヶ月間<br className="u-pc" />寿司学校で徹底指導!<br />学費は全額会社負担
                   </p>
                 </div>
               </div>
             </div>
+            <p style={{ textAlign: 'center', fontSize: '0.875rem', color: '#6b7280', marginTop: '2rem' }}>
+              ※ 特別選考あり
+            </p>
           </div>
         </section>
 
@@ -308,7 +311,7 @@ export default function TsukijiAozoraBeginnerLP() {
                 </div>
                 <div className="p-faq__text">
                   <p className="p-faq__q --word">飲食人大学の学費は本当に無料？</p>
-                  <p className="p-faq__a">はい、数十万円かかる学費を会社が全額負担します。お前への期待の証です。</p>
+                  <p className="p-faq__a">はい、100万円ほどかかる学費を会社が全額負担します。お前への期待の証です。</p>
                 </div>
               </div>
               <div className="p-faq__box">
