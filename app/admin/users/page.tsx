@@ -186,22 +186,78 @@ export default function AdminUsersPage() {
               応募者詳細
             </h2>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '24px' }}>
-              <div>
-                <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>名前</p>
-                <p style={{ fontWeight: 'bold' }}>{selectedApp.name || '-'}</p>
+            {/* 基本情報 */}
+            <div style={{ marginBottom: '24px', padding: '20px', backgroundColor: '#f9fafb', borderRadius: '8px' }}>
+              <h3 style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '16px', color: '#1f2937' }}>基本情報</h3>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div>
+                  <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>名前</p>
+                  <p style={{ fontWeight: 'bold' }}>{selectedApp.name || '-'}</p>
+                </div>
+                <div>
+                  <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>生年月日</p>
+                  <p style={{ fontWeight: 'bold' }}>{selectedApp.birth_date || '-'}</p>
+                </div>
+                <div>
+                  <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>メール</p>
+                  <p style={{ fontWeight: 'bold', fontSize: '14px' }}>{selectedApp.email || '-'}</p>
+                </div>
+                <div>
+                  <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>電話番号</p>
+                  <p style={{ fontWeight: 'bold' }}>{selectedApp.phone || '-'}</p>
+                </div>
+                <div>
+                  <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>転職時期</p>
+                  <p style={{ fontWeight: 'bold' }}>{selectedApp.desired_timing || '-'}</p>
+                </div>
+                <div>
+                  <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>経験年数</p>
+                  <p style={{ fontWeight: 'bold' }}>{selectedApp.experience || '-'}</p>
+                </div>
+                <div>
+                  <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>勤務希望地</p>
+                  <p style={{ fontWeight: 'bold' }}>{selectedApp.location || '-'}</p>
+                </div>
+                <div>
+                  <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>ステータス</p>
+                  <p style={{ fontWeight: 'bold' }}>
+                    <span style={{
+                      display: 'inline-block',
+                      padding: '4px 8px',
+                      borderRadius: '4px',
+                      fontSize: '12px',
+                      fontWeight: 'bold',
+                      backgroundColor: 
+                        selectedApp.status === 'completed' ? '#d1fae5' :
+                        selectedApp.status === 'in_progress' ? '#dbeafe' : '#fee2e2',
+                      color:
+                        selectedApp.status === 'completed' ? '#065f46' :
+                        selectedApp.status === 'in_progress' ? '#1e40af' : '#991b1b'
+                    }}>
+                      {selectedApp.status === 'completed' ? '完了' :
+                       selectedApp.status === 'in_progress' ? '進行中' : '放棄'}
+                    </span>
+                  </p>
+                </div>
               </div>
-              <div>
-                <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>生年月日</p>
-                <p style={{ fontWeight: 'bold' }}>{selectedApp.birth_date || '-'}</p>
-              </div>
-              <div>
-                <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>メール</p>
-                <p style={{ fontWeight: 'bold', fontSize: '14px' }}>{selectedApp.email || '-'}</p>
-              </div>
-              <div>
-                <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>電話番号</p>
-                <p style={{ fontWeight: 'bold' }}>{selectedApp.phone || '-'}</p>
+            </div>
+
+            {/* 内部情報 */}
+            <div style={{ marginBottom: '24px', padding: '20px', backgroundColor: '#f9fafb', borderRadius: '8px' }}>
+              <h3 style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '16px', color: '#1f2937' }}>内部情報</h3>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div>
+                  <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>ID</p>
+                  <p style={{ fontWeight: 'bold', fontSize: '12px', fontFamily: 'monospace' }}>{selectedApp.id || '-'}</p>
+                </div>
+                <div>
+                  <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>セッションID</p>
+                  <p style={{ fontWeight: 'bold', fontSize: '12px', fontFamily: 'monospace' }}>{selectedApp.session_id || '-'}</p>
+                </div>
+                <div>
+                  <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>現在のステップ</p>
+                  <p style={{ fontWeight: 'bold' }}>{selectedApp.current_step || 0}</p>
+                </div>
               </div>
             </div>
 
@@ -268,18 +324,22 @@ export default function AdminUsersPage() {
               </div>
             )}
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px', fontSize: '14px', color: '#6b7280' }}>
-              <div>
-                <p>登録日時</p>
-                <p style={{ fontWeight: 'bold', color: '#1f2937' }}>{formatDate(selectedApp.created_at)}</p>
-              </div>
-              <div>
-                <p>更新日時</p>
-                <p style={{ fontWeight: 'bold', color: '#1f2937' }}>{formatDate(selectedApp.updated_at)}</p>
-              </div>
-              <div>
-                <p>完了日時</p>
-                <p style={{ fontWeight: 'bold', color: '#1f2937' }}>{formatDate(selectedApp.completed_at)}</p>
+            {/* 日時情報 */}
+            <div style={{ marginBottom: '24px', padding: '20px', backgroundColor: '#f9fafb', borderRadius: '8px' }}>
+              <h3 style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '16px', color: '#1f2937' }}>日時情報</h3>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
+                <div>
+                  <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>登録日時</p>
+                  <p style={{ fontWeight: 'bold', fontSize: '14px' }}>{formatDate(selectedApp.created_at)}</p>
+                </div>
+                <div>
+                  <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>更新日時</p>
+                  <p style={{ fontWeight: 'bold', fontSize: '14px' }}>{formatDate(selectedApp.updated_at)}</p>
+                </div>
+                <div>
+                  <p style={{ color: '#6b7280', fontSize: '14px', marginBottom: '4px' }}>完了日時</p>
+                  <p style={{ fontWeight: 'bold', fontSize: '14px' }}>{formatDate(selectedApp.completed_at)}</p>
+                </div>
               </div>
             </div>
 
