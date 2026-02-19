@@ -1,0 +1,17 @@
+/* 未経験者向けLPの文言が長いためアイコン位置を調整 */
+.c-button img {
+  left: -4rem !important;
+}
+@media screen and (max-width: 767px) {
+  .c-button img {
+    left: -1.5rem !important;
+  }
+}
+.c-button.--large img {
+  left: -4.5rem !important;
+}
+@media screen and (max-width: 767px) {
+  .c-button.--large img {
+    left: -1.8rem !important;
+  }
+}

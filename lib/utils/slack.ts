@@ -232,8 +232,234 @@ export async function notifyApplicationCompleted(data: {
     },
   ];
 
+  // 管理画面へのリンクを追加
+  let baseUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_URL || 'https://sushi-career.vercel.app';
+  if (baseUrl && !baseUrl.startsWith('http')) {
+    baseUrl = `https://${baseUrl}`;
+  }
+  blocks.push(
+    {
+      type: 'divider',
+    },
+    {
+      type: 'context',
+      elements: [
+        {
+          type: 'mrkdwn',
+          text: `<${baseUrl}/admin/users|📊 管理画面で確認する>`,
+        },
+      ],
+    }
+  );
+
   await sendSlackNotification({
     text: `新しい応募完了: ${data.name || '名前未入力'}`,
+    blocks,
+  });
+}
+
+/**
+ * 適正検査応募完了通知をSlackに送信
+ */
+export async function notifyAptitudeTestCompleted(data: {
+  name?: string;
+  email?: string;
+  phone?: string;
+  birth_date?: string;
+  aptitude_test_results?: {
+    percentage: number;
+    level: string;
+    score: number;
+    message: string;
+    answers: {
+      dexterity?: string;
+      physicalStrength?: string;
+      learningAttitude?: string;
+      patience?: string;
+      communication?: string;
+      passion?: string;
+      salaryKnowledge?: string;
+      aiDemand?: string;
+      futureVision?: string;
+    };
+  };
+  completed_at: string;
+}) {
+  const aptitude = data.aptitude_test_results;
+  
+  const blocks: any[] = [
+    {
+      type: 'header',
+      text: {
+        type: 'plain_text',
+        text: '🍣 新しい応募完了（適正検査）',
+        emoji: true,
+      },
+    },
+    {
+      type: 'divider',
+    },
+  ];
+
+  // 適性度を目立つように表示
+  if (aptitude) {
+    blocks.push({
+      type: 'section',
+      text: {
+        type: 'mrkdwn',
+        text: `*🎯 適性度: ${aptitude.percentage}%*\n_${aptitude.level}_`,
+      },
+    });
+    blocks.push({
+      type: 'divider',
+    });
+  }
+
+  // 基本情報
+  blocks.push(
+    {
+      type: 'section',
+      fields: [
+        {
+          type: 'mrkdwn',
+          text: `*名前:*\n${data.name || '未入力'}`,
+        },
+        {
+          type: 'mrkdwn',
+          text: `*生年月日:*\n${data.birth_date || '未入力'}`,
+        },
+      ],
+    },
+    {
+      type: 'section',
+      fields: [
+        {
+          type: 'mrkdwn',
+          text: `*メールアドレス:*\n${data.email || '未入力'}`,
+        },
+        {
+          type: 'mrkdwn',
+          text: `*電話番号:*\n${data.phone || '未入力'}`,
+        },
+      ],
+    }
+  );
+
+  // 適性検査の回答内容
+  if (aptitude?.answers) {
+    blocks.push(
+      {
+        type: 'divider',
+      },
+      {
+        type: 'section',
+        text: {
+          type: 'mrkdwn',
+          text: '*📋 適性検査回答*',
+        },
+      },
+      {
+        type: 'section',
+        fields: [
+          {
+            type: 'mrkdwn',
+            text: `*手先の器用さ:*\n${aptitude.answers.dexterity || '-'}`,
+          },
+          {
+            type: 'mrkdwn',
+            text: `*体力:*\n${aptitude.answers.physicalStrength || '-'}`,
+          },
+        ],
+      },
+      {
+        type: 'section',
+        fields: [
+          {
+            type: 'mrkdwn',
+            text: `*学習意欲:*\n${aptitude.answers.learningAttitude || '-'}`,
+          },
+          {
+            type: 'mrkdwn',
+            text: `*忍耐力:*\n${aptitude.answers.patience || '-'}`,
+          },
+        ],
+      },
+      {
+        type: 'section',
+        fields: [
+          {
+            type: 'mrkdwn',
+            text: `*コミュニケーション:*\n${aptitude.answers.communication || '-'}`,
+          },
+          {
+            type: 'mrkdwn',
+            text: `*情熱:*\n${aptitude.answers.passion || '-'}`,
+          },
+        ],
+      }
+    );
+
+    // 追加質問の回答
+    if (aptitude.answers.salaryKnowledge || aptitude.answers.aiDemand || aptitude.answers.futureVision) {
+      blocks.push(
+        {
+          type: 'divider',
+        },
+        {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: '*💭 追加質問回答*',
+          },
+        },
+        {
+          type: 'section',
+          fields: [
+            {
+              type: 'mrkdwn',
+              text: `*初任給の知識:*\n${aptitude.answers.salaryKnowledge || '-'}`,
+            },
+            {
+              type: 'mrkdwn',
+              text: `*AI時代の需要:*\n${aptitude.answers.aiDemand || '-'}`,
+            },
+          ],
+        },
+        {
+          type: 'section',
+          fields: [
+            {
+              type: 'mrkdwn',
+              text: `*5年後の未来:*\n${aptitude.answers.futureVision || '-'}`,
+            },
+          ],
+        }
+      );
+    }
+  }
+
+  // 管理画面へのリンクを追加
+  let baseUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_URL || 'https://sushi-career.vercel.app';
+  if (baseUrl && !baseUrl.startsWith('http')) {
+    baseUrl = `https://${baseUrl}`;
+  }
+  blocks.push(
+    {
+      type: 'divider',
+    },
+    {
+      type: 'context',
+      elements: [
+        {
+          type: 'mrkdwn',
+          text: `<${baseUrl}/admin/users|📊 管理画面で確認する>`,
+        },
+      ],
+    }
+  );
+
+  await sendSlackNotification({
+    text: `🍣 適正検査応募完了: ${data.name || '名前未入力'}（適性度: ${aptitude?.percentage || 0}%）`,
     blocks,
   });
 }

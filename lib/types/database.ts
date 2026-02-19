@@ -1,3 +1,22 @@
+export interface AptitudeTestResults {
+  answers: {
+    dexterity?: string;
+    physicalStrength?: string;
+    learningAttitude?: string;
+    patience?: string;
+    communication?: string;
+    passion?: string;
+    salaryKnowledge?: string;
+    aiDemand?: string;
+    futureVision?: string;
+  };
+  score: number;
+  percentage: number;
+  level: string;
+  message: string;
+  timestamp: string;
+}
+
 export interface JobApplication {
   id?: string;
   session_id: string;
@@ -9,6 +28,7 @@ export interface JobApplication {
   birth_date?: string;
   email?: string;
   phone?: string;
+  aptitude_test_results?: AptitudeTestResults;
   status: 'in_progress' | 'completed' | 'abandoned';
   created_at?: string;
   updated_at?: string;
