@@ -25,13 +25,13 @@ export default function ExitIntentPopupBeginner() {
     // すでに表示済みならイベントリスナーを設定しない
     if (hasShown) return;
 
-    // 15秒タイマー
+    // 30秒タイマー
     const timer = setTimeout(() => {
       if (!hasShown) {
         setIsVisible(true);
         setHasShown(true);
       }
-    }, 15000);
+    }, 30000);
 
     // Exit intent検知（マウスが画面上部から離脱しようとする動き）
     const handleMouseLeave = (e: MouseEvent) => {

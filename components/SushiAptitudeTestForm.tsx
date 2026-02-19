@@ -202,11 +202,11 @@ const calculateScore = (field: keyof FormData, value: string): number => {
       'できるだけ短期間で習得したい': 1
     },
     communication: {
-      '接客経験があり得意': 5,
-      '人と話すのは好き': 4,
+      'とても好き！人と話すのが得意': 5,
+      '好きな方だと思う': 4,
       '普通程度': 3,
       'あまり得意ではない': 2,
-      '黙々と作業したい': 1
+      '黙々と作業する方が好き': 1
     },
     passion: {
       '寿司が大好きで、自分で作りたい': 5,
@@ -742,7 +742,7 @@ export default function SushiAptitudeTestForm() {
             {isTyping && step === 5 ? (
               <TypingIndicator />
             ) : (
-              <ChatBubble message="【質問5/10】お客様とのコミュニケーションについて教えてください" />
+              <ChatBubble message="【質問5/10】人と話すことは好きですか？" />
             )}
             
             {formData.communication && (
@@ -752,11 +752,11 @@ export default function SushiAptitudeTestForm() {
             {step === 5 && showOptions && !formData.communication && (
               <div style={{ marginBottom: '24px' }}>
                 {[
-                  '接客経験があり得意',
-                  '人と話すのは好き',
+                  'とても好き！人と話すのが得意',
+                  '好きな方だと思う',
                   '普通程度',
                   'あまり得意ではない',
-                  '黙々と作業したい'
+                  '黙々と作業する方が好き'
                 ].map((option) => (
                   <button
                     key={option}
