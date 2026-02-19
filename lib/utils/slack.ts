@@ -233,10 +233,7 @@ export async function notifyApplicationCompleted(data: {
   ];
 
   // 管理画面へのリンクを追加
-  let baseUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_URL || 'https://sushi-career.vercel.app';
-  if (baseUrl && !baseUrl.startsWith('http')) {
-    baseUrl = `https://${baseUrl}`;
-  }
+  const adminUrl = 'https://careers.osushi.studio/admin/users';
   blocks.push(
     {
       type: 'divider',
@@ -246,7 +243,7 @@ export async function notifyApplicationCompleted(data: {
       elements: [
         {
           type: 'mrkdwn',
-          text: `<${baseUrl}/admin/users|📊 管理画面で確認する>`,
+          text: `<${adminUrl}|📊 管理画面で確認する>`,
         },
       ],
     }
@@ -439,10 +436,7 @@ export async function notifyAptitudeTestCompleted(data: {
   }
 
   // 管理画面へのリンクを追加
-  let baseUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_URL || 'https://sushi-career.vercel.app';
-  if (baseUrl && !baseUrl.startsWith('http')) {
-    baseUrl = `https://${baseUrl}`;
-  }
+  const adminUrl = 'https://careers.osushi.studio/admin/users';
   blocks.push(
     {
       type: 'divider',
@@ -452,7 +446,7 @@ export async function notifyAptitudeTestCompleted(data: {
       elements: [
         {
           type: 'mrkdwn',
-          text: `<${baseUrl}/admin/users|📊 管理画面で確認する>`,
+          text: `<${adminUrl}|📊 管理画面で確認する>`,
         },
       ],
     }
