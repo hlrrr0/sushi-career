@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { JobApplication } from '@/lib/types/database';
 
-type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8; // 8は完了画面
+type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7; // 7は完了画面
 
 interface FormData {
   desiredTiming: string;
@@ -11,7 +11,6 @@ interface FormData {
   location: string;
   name: string;
   birthDate: string;
-  email: string;
   phone: string;
 }
 
@@ -29,7 +28,6 @@ export default function ChatApplicationForm({
     location: '',
     name: '',
     birthDate: '',
-    email: '',
     phone: ''
   });
   const [isTyping, setIsTyping] = useState(false);
@@ -40,7 +38,7 @@ export default function ChatApplicationForm({
 
   useEffect(() => {
     // タイピングアニメーション
-    if (step <= 7) {
+    if (step <= 6) {
       setIsTyping(true);
       setShowOptions(false);
       const timer = setTimeout(() => {
@@ -50,9 +48,9 @@ export default function ChatApplicationForm({
       return () => clearTimeout(timer);
     }
     
-    // ステップ8（完了）に到達したらcompleted_atを保存
-    if (step === 8 && applicationId) {
-      saveProgress(formData, 8);
+    // ステップ7（完了）に到達したらcompleted_atを保存
+    if (step === 7 && applicationId) {
+      saveProgress(formData, 7);
     }
   }, [step]);
 
@@ -77,10 +75,9 @@ export default function ChatApplicationForm({
         location: currentFormData.location || undefined,
         name: currentFormData.name || undefined,
         birth_date: currentFormData.birthDate || undefined,
-        email: currentFormData.email || undefined,
         phone: currentFormData.phone || undefined,
-        status: currentStep === 8 ? 'completed' : 'in_progress',
-        ...(currentStep === 8 && { completed_at: new Date().toISOString() })
+        status: currentStep === 7 ? 'completed' : 'in_progress',
+        ...(currentStep === 7 && { completed_at: new Date().toISOString() })
       };
 
       const method = applicationId ? 'PUT' : 'POST';
@@ -397,32 +394,10 @@ export default function ChatApplicationForm({
           </>
         )}
 
-        {/* Step 6: メールアドレス */}
+        {/* Step 6: 電話番号 */}
         {step >= 6 && (
           <>
             {isTyping && step === 6 ? (
-              <TypingIndicator />
-            ) : (
-              <ChatBubble message="メールアドレスを教えてください" />
-            )}
-            
-            {formData.email && (
-              <ChatBubble message={formData.email} isBot={false} />
-            )}
-
-            {step === 6 && showOptions && !formData.email && (
-              <TextInput
-                onSubmit={(value) => handleTextSubmit('email', value)}
-                placeholder="例: example@email.com"
-              />
-            )}
-          </>
-        )}
-
-        {/* Step 7: 電話番号 */}
-        {step >= 7 && (
-          <>
-            {isTyping && step === 7 ? (
               <TypingIndicator />
             ) : (
               <ChatBubble message="最後に、電話番号を教えてください" />
@@ -432,7 +407,7 @@ export default function ChatApplicationForm({
               <ChatBubble message={formData.phone} isBot={false} />
             )}
 
-            {step === 7 && showOptions && !formData.phone && (
+            {step === 6 && showOptions && !formData.phone && (
               <TextInput
                 onSubmit={(value) => handleTextSubmit('phone', value)}
                 placeholder="例: 090-1234-5678"
@@ -441,53 +416,115 @@ export default function ChatApplicationForm({
           </>
         )}
 
-        {/* Step 8: 完了 */}
-        {step === 8 && (
+        {/* Step 7: 完了画面 - 2択提示 */}
+        {step === 7 && (
           <>
             <ChatBubble message="ありがとうございます！" />
-            <ChatBubble message="ご入力いただいた情報をもとに、最適な求人をご紹介いたします。担当者より2営業日以内にご連絡させていただきます。" />
+            <ChatBubble message="次のステップをお選びください" />
+            
             <div style={{
               marginTop: '24px',
-              padding: '20px',
-              backgroundColor: '#d1fae5',
-              borderRadius: '12px',
-              border: '2px solid #10b981'
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+              gap: '16px'
             }}>
-              <div style={{
-                textAlign: 'center',
-                color: '#065f46',
-                fontSize: '18px',
-                fontWeight: 'bold',
-                marginBottom: '8px'
-              }}>
-                ✓ 送信完了
-              </div>
-              <div style={{
-                textAlign: 'center',
-                color: '#047857',
-                fontSize: '14px'
-              }}>
-                LINEでのご連絡も可能です
-              </div>
-              <div style={{ textAlign: 'center', marginTop: '16px' }}>
-                <a
-                  href="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
-                  style={{
-                    display: 'inline-block',
-                    padding: '12px 24px',
-                    backgroundColor: '#10b981',
-                    color: 'white',
-                    borderRadius: '8px',
-                    textDecoration: 'none',
-                    fontWeight: 'bold',
-                    transition: 'background-color 0.2s'
-                  }}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#059669'}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#10b981'}
-                >
-                  LINEで友だち追加
-                </a>
-              </div>
+              {/* オプション1: オンライン面談 */}
+              <a
+                href="https://s.lmes.jp/l/mNTxaib5RS"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  textDecoration: 'none',
+                  display: 'block',
+                  padding: '24px',
+                  backgroundColor: 'white',
+                  borderRadius: '12px',
+                  border: '2px solid #f97316',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                  transition: 'all 0.2s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#ea580c';
+                  e.currentTarget.style.boxShadow = '0 10px 15px rgba(0, 0, 0, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '#f97316';
+                  e.currentTarget.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                }}
+              >
+                <div style={{
+                  fontSize: '32px',
+                  marginBottom: '12px',
+                  textAlign: 'center'
+                }}>
+                  📅
+                </div>
+                <div style={{
+                  fontSize: '16px',
+                  fontWeight: 'bold',
+                  color: '#1f2937',
+                  marginBottom: '8px',
+                  textAlign: 'center'
+                }}>
+                  オンライン面談を予約
+                </div>
+                <div style={{
+                  fontSize: '13px',
+                  color: '#6b7280',
+                  lineHeight: '1.5',
+                  textAlign: 'center'
+                }}>
+                  キャリアアドバイザーとお話しして、詳しく求人を紹介してもらう
+                </div>
+              </a>
+
+              {/* オプション2: LINE友だち追加 */}
+              <a
+                href={`https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK&cid1=${encodeURIComponent(formData.desiredTiming)}&cid2=${encodeURIComponent(formData.experience)}&cid3=${encodeURIComponent(formData.birthDate)}&cid4=${encodeURIComponent(formData.phone)}&cid5=meta_ad_sushi`}
+                style={{
+                  textDecoration: 'none',
+                  display: 'block',
+                  padding: '24px',
+                  backgroundColor: 'white',
+                  borderRadius: '12px',
+                  border: '2px solid #10b981',
+                  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                  transition: 'all 0.2s'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#059669';
+                  e.currentTarget.style.boxShadow = '0 10px 15px rgba(0, 0, 0, 0.15)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '#10b981';
+                  e.currentTarget.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                }}
+              >
+                <div style={{
+                  fontSize: '32px',
+                  marginBottom: '12px',
+                  textAlign: 'center'
+                }}>
+                  💬
+                </div>
+                <div style={{
+                  fontSize: '16px',
+                  fontWeight: 'bold',
+                  color: '#1f2937',
+                  marginBottom: '8px',
+                  textAlign: 'center'
+                }}>
+                  LINEで情報収集
+                </div>
+                <div style={{
+                  fontSize: '13px',
+                  color: '#6b7280',
+                  lineHeight: '1.5',
+                  textAlign: 'center'
+                }}>
+                  まずは気軽にLINEで求人情報を受け取る
+                </div>
+              </a>
             </div>
           </>
         )}

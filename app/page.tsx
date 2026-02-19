@@ -48,7 +48,7 @@ export default function LandingPage() {
             <div className="c-button">
               <img src="/lp/img/icon-cta.svg" alt="簡単!30秒" />
               <DeviceAwareLink 
-                mobileUrl="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
+                mobileUrl="/apply"
                 desktopUrl="/apply"
               >
                 求人を見てみる (無料)
@@ -95,7 +95,7 @@ export default function LandingPage() {
             <h2 className="c-heading --job">求人例</h2>
             <div className="p-job__boxes">
               <DeviceAwareLink 
-                mobileUrl="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
+                mobileUrl="/apply"
                 desktopUrl="/apply"
                 className="p-job__box"
               >
@@ -113,7 +113,7 @@ export default function LandingPage() {
                 <p className="p-job__place">東京</p>
               </DeviceAwareLink>
               <DeviceAwareLink 
-                mobileUrl="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
+                mobileUrl="/apply"
                 desktopUrl="/apply"
                 className="p-job__box"
               >
@@ -131,7 +131,7 @@ export default function LandingPage() {
                 <p className="p-job__place">東京</p>
               </DeviceAwareLink>
               <DeviceAwareLink 
-                mobileUrl="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
+                mobileUrl="/apply"
                 desktopUrl="/apply"
                 className="p-job__box"
               >
@@ -149,7 +149,7 @@ export default function LandingPage() {
                 <p className="p-job__place">アメリカ</p>
               </DeviceAwareLink>
               <DeviceAwareLink 
-                mobileUrl="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
+                mobileUrl="/apply"
                 desktopUrl="/apply"
                 className="p-job__box"
               >
@@ -181,7 +181,7 @@ export default function LandingPage() {
           <div className="p-cta__button c-button">
             <img src="/lp/img/icon-cta.svg" alt="簡単!30秒" />
             <DeviceAwareLink 
-              mobileUrl="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
+              mobileUrl="/apply"
               desktopUrl="/apply"
             >
               求人を見てみる (無料)
@@ -412,7 +412,7 @@ export default function LandingPage() {
               <div className="p-footer-cta__button c-button --large">
                 <img src="/lp/img/icon-cta-lg.svg" alt="簡単!30秒" />
                 <DeviceAwareLink 
-                  mobileUrl="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
+                  mobileUrl="/apply"
                   desktopUrl="/apply"
                 >
                   求人を見てみる (無料)
