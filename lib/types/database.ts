@@ -29,6 +29,7 @@ export interface JobApplication {
   email?: string;
   phone?: string;
   aptitude_test_results?: AptitudeTestResults;
+  memo?: string;
   status: 'in_progress' | 'completed' | 'abandoned';
   created_at?: string;
   updated_at?: string;

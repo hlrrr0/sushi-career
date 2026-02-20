@@ -9,6 +9,8 @@ export default function AdminUsersPage() {
   const [filter, setFilter] = useState<'all' | 'completed' | 'in_progress' | 'abandoned'>('all');
   const [selectedApp, setSelectedApp] = useState<JobApplication | null>(null);
   const [totalCount, setTotalCount] = useState(0);
+  const [editingMemo, setEditingMemo] = useState('');
+  const [savingMemo, setSavingMemo] = useState(false);
 
   useEffect(() => {
     fetchApplications();
@@ -39,6 +41,49 @@ export default function AdminUsersPage() {
   const formatDate = (dateString?: string) => {
     if (!dateString) return '-';
     return new Date(dateString).toLocaleString('ja-JP');
+  };
+
+  const handleSaveMemo = async () => {
+    if (!selectedApp?.id) return;
+    
+    setSavingMemo(true);
+    try {
+      const response = await fetch('/api/applications', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          id: selectedApp.id,
+          memo: editingMemo
+        }),
+      });
+
+      if (response.ok) {
+        // ローカルステートを更新
+        setApplications(prev =>
+          prev.map(app =>
+            app.id === selectedApp.id
+              ? { ...app, memo: editingMemo }
+              : app
+          )
+        );
+        setSelectedApp({ ...selectedApp, memo: editingMemo });
+        alert('メモを保存しました');
+      } else {
+        alert('メモの保存に失敗しました');
+      }
+    } catch (error) {
+      console.error('Failed to save memo:', error);
+      alert('メモの保存に失敗しました');
+    } finally {
+      setSavingMemo(false);
+    }
+  };
+
+  const handleOpenModal = (app: JobApplication) => {
+    setSelectedApp(app);
+    setEditingMemo(app.memo || '');
   };
 
   return (
@@ -86,6 +131,7 @@ export default function AdminUsersPage() {
                 <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px' }}>メール</th>
                 <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px' }}>電話</th>
                 <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px' }}>適性度</th>
+                <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px' }}>メモ</th>
                 <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px' }}>ステータス</th>
                 <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px' }}>登録日時</th>
                 <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px' }}>詳細</th>
@@ -111,6 +157,16 @@ export default function AdminUsersPage() {
                       </span>
                     ) : '-'}
                   </td>
+                  <td style={{ padding: '12px', fontSize: '14px', maxWidth: '200px' }}>
+                    <div style={{
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis',
+                      whiteSpace: 'nowrap',
+                      color: app.memo ? '#1f2937' : '#9ca3af'
+                    }}>
+                      {app.memo || 'メモなし'}
+                    </div>
+                  </td>
                   <td style={{ padding: '12px' }}>
                     <span style={{
                       display: 'inline-block',
@@ -132,7 +188,7 @@ export default function AdminUsersPage() {
                   <td style={{ padding: '12px', fontSize: '14px' }}>{formatDate(app.created_at)}</td>
                   <td style={{ padding: '12px' }}>
                     <button
-                      onClick={() => setSelectedApp(app)}
+                      onClick={() => handleOpenModal(app)}
                       style={{
                         padding: '6px 12px',
                         backgroundColor: '#f97316',
@@ -341,6 +397,43 @@ export default function AdminUsersPage() {
                   <p style={{ fontWeight: 'bold', fontSize: '14px' }}>{formatDate(selectedApp.completed_at)}</p>
                 </div>
               </div>
+            </div>
+
+            {/* メモ編集 */}
+            <div style={{ marginBottom: '24px', padding: '20px', backgroundColor: '#fffbeb', borderRadius: '8px', border: '2px solid #fbbf24' }}>
+              <h3 style={{ fontSize: '16px', fontWeight: 'bold', marginBottom: '12px', color: '#78350f' }}>メモ（管理者用）</h3>
+              <textarea
+                value={editingMemo}
+                onChange={(e) => setEditingMemo(e.target.value)}
+                placeholder="応募者に関するメモを入力..."
+                style={{
+                  width: '100%',
+                  minHeight: '120px',
+                  padding: '12px',
+                  border: '1px solid #e5e7eb',
+                  borderRadius: '6px',
+                  fontSize: '14px',
+                  fontFamily: 'inherit',
+                  resize: 'vertical',
+                  marginBottom: '12px'
+                }}
+              />
+              <button
+                onClick={handleSaveMemo}
+                disabled={savingMemo}
+                style={{
+                  padding: '8px 16px',
+                  backgroundColor: savingMemo ? '#9ca3af' : '#f97316',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: savingMemo ? 'not-allowed' : 'pointer',
+                  fontSize: '14px',
+                  fontWeight: 'bold'
+                }}
+              >
+                {savingMemo ? '保存中...' : 'メモを保存'}
+              </button>
             </div>
 
             <button
