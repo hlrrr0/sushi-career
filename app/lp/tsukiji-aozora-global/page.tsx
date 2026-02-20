@@ -102,7 +102,7 @@ export default function TsukijiAozoraGlobalLP() {
                 <p style={{ fontSize: '0.95rem', lineHeight: '1.6', fontWeight: '600', color: '#333' }}>創業からの歴史と<br />世界で通用する目利き力</p>
               </div>
               <div style={{ background: 'white', padding: '2.5rem 1.5rem', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
-                <div style={{ fontSize: '4rem', fontWeight: '900', color: '#c41e3a', marginBottom: '1rem', lineHeight: '1', fontFamily: '"Hiragino Sans", "ヒラギノ角ゴシック", sans-serif' }}>多数</div>
+                <div style={{ fontSize: '3rem', fontWeight: '900', color: '#c41e3a', marginBottom: '1rem', lineHeight: '1', fontFamily: '"Hiragino Sans", "ヒラギノ角ゴシック", sans-serif' }}>実績あり</div>
                 <p style={{ fontSize: '0.95rem', lineHeight: '1.6', fontWeight: '600', color: '#333' }}>ミシュラン星獲得者を<br />輩出する教育力</p>
               </div>
               <div style={{ background: 'white', padding: '2.5rem 1.5rem', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
@@ -121,7 +121,7 @@ export default function TsukijiAozoraGlobalLP() {
               mobileUrl="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
               desktopUrl="/apply/tsukiji-aozora"
             >
-              応募する
+              話を聞いてみる
             </DeviceAwareLink>
           </div>
         </section>
@@ -355,7 +355,7 @@ export default function TsukijiAozoraGlobalLP() {
                   mobileUrl="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
                   desktopUrl="/apply/tsukiji-aozora"
                 >
-                  応募する
+                  話を聞いてみる
                 </DeviceAwareLink>
               </div>
             </div>

@@ -74,7 +74,7 @@ export default function TsukijiAozoraBeginnerLP() {
                   <span className="p-feature__heading-top">未経験から</span>
                   <span className="p-feature__heading-bottom">ミシュラン星へ</span>
                 </h3>
-                <p className="p-feature__text">実際に、未経験から入社してミシュラン星を獲得した先輩が多数いる。総親方・前田康衛の直伝技術と、築地100年の目利き力。この最高の環境で学べば、お前も必ず一流になれる。未経験は弱点じゃない。むしろ、伸びしろだ。</p>
+                <p className="p-feature__text">実際に、未経験から入社してミシュラン星を獲得した先輩がいる。総親方・前田康衛の直伝技術と、築地100年の目利き力。この最高の環境で学べば、お前も必ず一流になれる。未経験は弱点じゃない。むしろ、伸びしろだ。</p>
                 <div className="p-feature__number"><img src="/lp/img/feature-02.svg" alt="02" /></div>
               </div>
               <div className="p-feature__box">
@@ -99,7 +99,7 @@ export default function TsukijiAozoraBeginnerLP() {
                 <p style={{ fontSize: '0.95rem', lineHeight: '1.6', fontWeight: '600', color: '#333' }}>飲食人大学の学費を<br />全額会社負担</p>
               </div>
               <div style={{ background: 'white', padding: '2.5rem 1.5rem', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
-                <div style={{ fontSize: '4rem', fontWeight: '900', color: '#c41e3a', marginBottom: '1rem', lineHeight: '1', fontFamily: '"Hiragino Sans", "ヒラギノ角ゴシック", sans-serif' }}>多数</div>
+                <div style={{ fontSize: '3rem', fontWeight: '900', color: '#c41e3a', marginBottom: '1rem', lineHeight: '1', fontFamily: '"Hiragino Sans", "ヒラギノ角ゴシック", sans-serif' }}>実績あり</div>
                 <p style={{ fontSize: '0.95rem', lineHeight: '1.6', fontWeight: '600', color: '#333' }}>未経験からミシュラン星<br />獲得者を輩出</p>
               </div>
               <div style={{ background: 'white', padding: '2.5rem 1.5rem', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
@@ -122,7 +122,7 @@ export default function TsukijiAozoraBeginnerLP() {
               mobileUrl="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
               desktopUrl="/apply/tsukiji-aozora"
             >
-              応募する
+              話を聞いてみる
             </DeviceAwareLink>
           </div>
         </section>
@@ -356,7 +356,7 @@ export default function TsukijiAozoraBeginnerLP() {
                   mobileUrl="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
                   desktopUrl="/apply/tsukiji-aozora"
                 >
-                  応募する
+                  話を聞いてみる
                 </DeviceAwareLink>
               </div>
             </div>

@@ -105,8 +105,8 @@ export default function TsukijiAozoraLP() {
                 <p style={{ fontSize: '0.95rem', lineHeight: '1.6', fontWeight: '600', color: '#333' }}>飲食人大学への<br />通学費用負担率</p>
               </div>
               <div style={{ background: 'white', padding: '2.5rem 1.5rem', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
-                <div style={{ fontSize: '4rem', fontWeight: '900', color: '#c41e3a', marginBottom: '1rem', lineHeight: '1', fontFamily: '"Hiragino Sans", "ヒラギノ角ゴシック", sans-serif' }}>多数</div>
-                <p style={{ fontSize: '0.95rem', lineHeight: '1.6', fontWeight: '600', color: '#333' }}>独立後にミシュラン星を<br />獲得した輩出者数</p>
+                <div style={{ fontSize: '3rem', fontWeight: '900', color: '#c41e3a', marginBottom: '1rem', lineHeight: '1', fontFamily: '"Hiragino Sans", "ヒラギノ角ゴシック", sans-serif' }}>実績あり</div>
+                <p style={{ fontSize: '0.95rem', lineHeight: '1.6', fontWeight: '600', color: '#333' }}>独立後にミシュラン星を<br />獲得した輩出者</p>
               </div>
               <div style={{ background: 'white', padding: '2.5rem 1.5rem', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.08)' }}>
                 <div style={{ fontSize: '3.4rem', fontWeight: '900', color: '#c41e3a', marginBottom: '1rem', lineHeight: '1', fontFamily: '"Hiragino Sans", "ヒラギノ角ゴシック", sans-serif' }}>世界展開</div>
@@ -124,7 +124,7 @@ export default function TsukijiAozoraLP() {
               mobileUrl="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
               desktopUrl="/apply/tsukiji-aozora"
             >
-              応募する
+              話を聞いてみる
             </DeviceAwareLink>
           </div>
         </section>
@@ -340,7 +340,7 @@ export default function TsukijiAozoraLP() {
                 </div>
                 <div className="p-faq__text">
                   <p className="p-faq__q">将来的に独立も目指せますか？</p>
-                  <p className="p-faq__a">もちろんです。実際に独立後、ミシュラン星を獲得した卒業生も多数います。</p>
+                  <p className="p-faq__a">もちろんです。実際に独立後、ミシュラン星を獲得した卒業生もいます。</p>
                 </div>
               </div>
             </div>
@@ -351,14 +351,14 @@ export default function TsukijiAozoraLP() {
           <div className="l-inner">
             <div className="p-footer-cta__contents">
               <p className="p-footer-cta__text--sub">「面白い若手が来た」と、俺に言わせてみろ。</p>
-              <p className="p-footer-cta__text--main">経験も、知識も、今はなくていい。<br />必要なのは、このチャンスを掴み取る「握力」だけだ。</p>
+              <p className="p-footer-cta__text--main">経験も知識も、今はなくていい。<br />必要なのは、このチャンスを掴み取る「握力」だけだ。</p>
               <div className="p-footer-cta__button c-button --large">
                 <img src="/lp/img/icon-cta-lg.svg" alt="簡単!30秒" />
                 <DeviceAwareLink 
                   mobileUrl="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
                   desktopUrl="/apply/tsukiji-aozora"
                 >
-                  応募する
+                　話を聞いてみる
                 </DeviceAwareLink>
               </div>
             </div>

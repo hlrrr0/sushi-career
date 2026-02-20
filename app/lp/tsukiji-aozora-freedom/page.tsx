@@ -121,7 +121,7 @@ export default function TsukijiAozoraFreedomLP() {
               mobileUrl="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
               desktopUrl="/apply/tsukiji-aozora"
             >
-              応募する
+              話を聞いてみる
             </DeviceAwareLink>
           </div>
         </section>
@@ -355,7 +355,7 @@ export default function TsukijiAozoraFreedomLP() {
                   mobileUrl="https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
                   desktopUrl="/apply/tsukiji-aozora"
                 >
-                  応募する
+                  話を聞いてみる
                 </DeviceAwareLink>
               </div>
             </div>
