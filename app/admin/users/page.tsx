@@ -123,23 +123,41 @@ export default function AdminUsersPage() {
           読み込み中...
         </div>
       ) : (
-        <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', overflow: 'hidden' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+        <div style={{ backgroundColor: 'white', borderRadius: '8px', boxShadow: '0 1px 3px rgba(0,0,0,0.1)', overflowX: 'auto' }}>
+          <table style={{ width: '100%', minWidth: '900px', borderCollapse: 'collapse' }}>
             <thead style={{ backgroundColor: '#f9fafb' }}>
               <tr>
-                <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px' }}>名前</th>
-                <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px' }}>メール</th>
-                <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px' }}>電話</th>
-                <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px' }}>適性度</th>
-                <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px' }}>メモ</th>
-                <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px' }}>ステータス</th>
-                <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px' }}>登録日時</th>
-                <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px' }}>詳細</th>
+                <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px', whiteSpace: 'nowrap' }}>ステータス</th>
+                <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px', whiteSpace: 'nowrap' }}>名前</th>
+                <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px', whiteSpace: 'nowrap' }}>メール</th>
+                <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px', whiteSpace: 'nowrap' }}>電話</th>
+                <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px', whiteSpace: 'nowrap' }}>適性度</th>
+                <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px', whiteSpace: 'nowrap' }}>メモ</th>
+                <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px', whiteSpace: 'nowrap' }}>登録日時</th>
+                <th style={{ padding: '12px', textAlign: 'left', fontWeight: 'bold', fontSize: '14px', whiteSpace: 'nowrap' }}>詳細</th>
               </tr>
             </thead>
             <tbody>
               {applications.map((app) => (
                 <tr key={app.id} style={{ borderTop: '1px solid #e5e7eb' }}>
+                  <td style={{ padding: '12px' }}>
+                    <span style={{
+                      display: 'inline-block',
+                      padding: '4px 8px',
+                      borderRadius: '4px',
+                      fontSize: '12px',
+                      fontWeight: 'bold',
+                      backgroundColor: 
+                        app.status === 'completed' ? '#d1fae5' :
+                        app.status === 'in_progress' ? '#dbeafe' : '#fee2e2',
+                      color:
+                        app.status === 'completed' ? '#065f46' :
+                        app.status === 'in_progress' ? '#1e40af' : '#991b1b'
+                    }}>
+                      {app.status === 'completed' ? '完了' :
+                       app.status === 'in_progress' ? '進行中' : '放棄'}
+                    </span>
+                  </td>
                   <td style={{ padding: '12px' }}>{app.name || '-'}</td>
                   <td style={{ padding: '12px', fontSize: '14px' }}>{app.email || '-'}</td>
                   <td style={{ padding: '12px' }}>{app.phone || '-'}</td>
@@ -166,24 +184,6 @@ export default function AdminUsersPage() {
                     }}>
                       {app.memo || 'メモなし'}
                     </div>
-                  </td>
-                  <td style={{ padding: '12px' }}>
-                    <span style={{
-                      display: 'inline-block',
-                      padding: '4px 8px',
-                      borderRadius: '4px',
-                      fontSize: '12px',
-                      fontWeight: 'bold',
-                      backgroundColor: 
-                        app.status === 'completed' ? '#d1fae5' :
-                        app.status === 'in_progress' ? '#dbeafe' : '#fee2e2',
-                      color:
-                        app.status === 'completed' ? '#065f46' :
-                        app.status === 'in_progress' ? '#1e40af' : '#991b1b'
-                    }}>
-                      {app.status === 'completed' ? '完了' :
-                       app.status === 'in_progress' ? '進行中' : '放棄'}
-                    </span>
                   </td>
                   <td style={{ padding: '12px', fontSize: '14px' }}>{formatDate(app.created_at)}</td>
                   <td style={{ padding: '12px' }}>
