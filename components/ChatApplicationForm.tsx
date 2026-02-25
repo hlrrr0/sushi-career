@@ -57,10 +57,10 @@ export default function ChatApplicationForm({
   // スクロール処理を別のuseEffectに分離（入力後のみスクロール）
   useEffect(() => {
     if (showOptions) {
-      // スムーズにスクロールするが、遅延を入れる
+      // フォーカス処理の後にスクロールするため、より長い遅延を設定
       setTimeout(() => {
         chatEndRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-      }, 100);
+      }, 200);
     }
   }, [showOptions, step]);
 
@@ -217,7 +217,7 @@ export default function ChatApplicationForm({
       <div style={{
         flex: 1,
         overflowY: 'auto',
-        padding: '24px',
+        padding: '12px',
         backgroundColor: '#ffffff'
       }}>
         {/* 初回メッセージ */}
@@ -654,6 +654,12 @@ function DateInput({ onSubmit }: { onSubmit: (value: string) => void }) {
 
 function TextInput({ onSubmit, placeholder }: { onSubmit: (value: string) => void; placeholder: string }) {
   const [value, setValue] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    // preventScrollオプションでフォーカス時の自動スクロールを防止
+    inputRef.current?.focus({ preventScroll: true });
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -667,11 +673,11 @@ function TextInput({ onSubmit, placeholder }: { onSubmit: (value: string) => voi
     <form onSubmit={handleSubmit} style={{ marginBottom: '24px' }}>
       <div style={{ display: 'flex', gap: '8px' }}>
         <input
+          ref={inputRef}
           type="text"
           value={value}
           onChange={(e) => setValue(e.target.value)}
           placeholder={placeholder}
-          autoFocus
           style={{
             flex: 1,
             padding: '12px 16px',
@@ -728,7 +734,8 @@ function PrefectureSelector({ onSelect }: { onSelect: (value: string) => void })
     : prefectures;
 
   useEffect(() => {
-    inputRef.current?.focus();
+    // preventScrollオプションでフォーカス時の自動スクロールを防止
+    inputRef.current?.focus({ preventScroll: true });
   }, []);
 
   return (

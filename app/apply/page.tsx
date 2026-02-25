@@ -16,7 +16,7 @@ export default function ApplyPage() {
       <div style={{
         maxWidth: '800px',
         margin: '0 auto',
-        padding: '0 20px'
+        padding: '0 12px'
       }}>
         {/* ヘッダー */}
         <div style={{
