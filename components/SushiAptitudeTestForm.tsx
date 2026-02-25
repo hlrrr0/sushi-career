@@ -472,6 +472,19 @@ export default function SushiAptitudeTestForm() {
     
     // ステップ10（電話番号）からステップ11（結果表示）に進む場合、審査中エフェクトを表示
     if (step === 10 && field === 'phone') {
+      // 電話番号送信時にMetaコンバージョンイベントを発火
+      // aptitude_test_lead イベント名を使用（/applyとは異なるイベント名で管理）
+      if (typeof window !== 'undefined' && (window as any).dataLayer) {
+        (window as any).dataLayer.push({
+          event: 'aptitude_test_lead',
+          eventCategory: 'Aptitude Test',
+          eventAction: 'Phone Submitted',
+          eventLabel: 'Apply-0219 Form',
+          content_name: 'Aptitude Test Phone Submission',
+          content_category: 'Aptitude Test Application'
+        });
+      }
+      
       setIsAnalyzing(true);
       
       // 2.5秒間のローディング後に結果を表示

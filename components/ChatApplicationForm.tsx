@@ -122,6 +122,22 @@ export default function ChatApplicationForm({
     const newFormData = { ...formData, [field]: value };
     setFormData(newFormData);
     
+    // 電話番号送信時にMetaコンバージョンイベントを発火
+    if (field === 'phone') {
+      // dataLayerにイベントをpush（GTM経由でMetaに送信）
+      // generate_lead イベント名を使用（GTMのルックアップテーブルでLeadにマッピング済み）
+      if (typeof window !== 'undefined' && (window as any).dataLayer) {
+        (window as any).dataLayer.push({
+          event: 'generate_lead',
+          eventCategory: 'Application',
+          eventAction: 'Phone Submitted',
+          eventLabel: 'Apply Form',
+          content_name: 'Phone Submission',
+          content_category: 'Application'
+        });
+      }
+    }
+    
     // 次のステップに進む
     const nextStep = (step + 1) as Step;
     
@@ -367,8 +383,7 @@ export default function ChatApplicationForm({
             {step === 4 && showOptions && !formData.name && (
               <TextInput
                 onSubmit={(value) => handleTextSubmit('name', value)}
-                placeholder="例: 山田太郎"
-              />
+                placeholder="例: 山田太郎"                formType="name"              />
             )}
           </>
         )}
@@ -411,6 +426,7 @@ export default function ChatApplicationForm({
               <TextInput
                 onSubmit={(value) => handleTextSubmit('phone', value)}
                 placeholder="例: 090-1234-5678"
+                formType="phone"
               />
             )}
           </>
@@ -538,9 +554,7 @@ export default function ChatApplicationForm({
 function DateInput({ onSubmit }: { onSubmit: (value: string) => void }) {
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
-  const [day, setDay] = useState('');
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const [day, setDay] = useState('');  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (year && month && day) {
       const formattedDate = `${year}年${month}月${day}日`;
@@ -554,7 +568,7 @@ function DateInput({ onSubmit }: { onSubmit: (value: string) => void }) {
   const days = Array.from({ length: 31 }, (_, i) => i + 1);
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: '24px' }}>
+    <form onSubmit={handleSubmit} style={{ marginBottom: '24px' }} data-form-type="birthdate">
       <div style={{ display: 'flex', gap: '8px', marginBottom: '8px' }}>
         <select
           value={year}
@@ -652,7 +666,7 @@ function DateInput({ onSubmit }: { onSubmit: (value: string) => void }) {
   );
 }
 
-function TextInput({ onSubmit, placeholder }: { onSubmit: (value: string) => void; placeholder: string }) {
+function TextInput({ onSubmit, placeholder, formType }: { onSubmit: (value: string) => void; placeholder: string; formType?: string }) {
   const [value, setValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -670,7 +684,7 @@ function TextInput({ onSubmit, placeholder }: { onSubmit: (value: string) => voi
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{ marginBottom: '24px' }}>
+    <form onSubmit={handleSubmit} style={{ marginBottom: '24px' }} data-form-type={formType || 'text'}>
       <div style={{ display: 'flex', gap: '8px' }}>
         <input
           ref={inputRef}
