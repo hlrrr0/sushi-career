@@ -22,22 +22,12 @@ export default function ExitIntentPopup() {
   }, []);
 
   useEffect(() => {
-    // すでに表示済みならイベントリスナーを設定しない
     if (hasShown) return;
-
-    // 30秒タイマー
-    const timer = setTimeout(() => {
-      if (!hasShown) {
-        setIsVisible(true);
-        setHasShown(true);
-      }
-    }, 30000);
 
     // Exit intent検知（マウスが画面上部から離脱しようとする動き）
     const handleMouseLeave = (e: MouseEvent) => {
       if (hasShown) return;
-      
-      // マウスが画面上部から離脱しようとしている場合
+
       if (e.clientY <= 0) {
         setIsVisible(true);
         setHasShown(true);
@@ -47,7 +37,6 @@ export default function ExitIntentPopup() {
     document.addEventListener('mouseleave', handleMouseLeave);
 
     return () => {
-      clearTimeout(timer);
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, [hasShown]);

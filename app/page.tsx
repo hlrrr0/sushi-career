@@ -1,13 +1,19 @@
 import Link from 'next/link';
 import ExitIntentPopup from '@/components/ExitIntentPopup';
-import DeviceAwareLink from '@/components/DeviceAwareLink';
+import JobExampleSection from '@/components/JobExampleSection';
+import { fetchPublishedArticles } from '@/lib/api/articles';
+
+export const revalidate = 3600;
 
 export const metadata = {
   title: '鮨キャリ | 寿司職人専門の求人サイト',
   description: '寿司職人専門のキャリアアドバイザーが、あなたのキャリアを無料サポート！国内最高峰の鮨求人を厳選紹介。',
 };
 
-export default function LandingPage() {
+export default async function LandingPage() {
+  const allArticles = await fetchPublishedArticles();
+  // ランダムで3つ選択
+  const columnArticles = [...allArticles].sort(() => Math.random() - 0.5).slice(0, 3);
   return (
     <>
       <link rel="stylesheet" href="/lp/css/style.css" />
@@ -87,91 +93,62 @@ export default function LandingPage() {
           <div className="p-feature__deco"><img src="/lp/img/feature-deco.png" alt="" /></div>
         </section>
 
-        <section className="l-section p-job">
-          <div className="l-inner">
-            <h2 className="c-heading --job">求人例</h2>
-            <div className="p-job__boxes">
-              <DeviceAwareLink 
-                mobileUrl="/apply"
-                desktopUrl="/apply"
-                className="p-job__box"
-              >
-                <div className="p-job__img">
-                  <img className="u-pc" src="/lp/img/job-1.png" alt="" />
-                  <img className="u-sp" src="/lp/img/sp/job-1-sp.png" alt="" />
-                </div>
-                <div className="p-job__contents">
-                  <h3 className="p-job__title">新店舗OPENをお任せできる「大将候補」</h3>
-                  <div className="p-job__wrapper">
-                    <span className="p-job__tag">月給</span>
-                    <span className="p-job__text">45万円〜 &nbsp;+ [賞与]</span>
-                  </div>
-                </div>
-                <p className="p-job__place">東京</p>
-              </DeviceAwareLink>
-              <DeviceAwareLink 
-                mobileUrl="/apply"
-                desktopUrl="/apply"
-                className="p-job__box"
-              >
-                <div className="p-job__img">
-                  <img className="u-pc" src="/lp/img/job-2.png" alt="" />
-                  <img className="u-sp" src="/lp/img/sp/job-2-sp.png" alt="" />
-                </div>
-                <div className="p-job__contents">
-                  <h3 className="p-job__title">老舗人気店の「副料理長候補」</h3>
-                  <div className="p-job__wrapper">
-                    <span className="p-job__tag">月給</span>
-                    <span className="p-job__text">38万円〜 &nbsp;+ [賞与]</span>
-                  </div>
-                </div>
-                <p className="p-job__place">東京</p>
-              </DeviceAwareLink>
-              <DeviceAwareLink 
-                mobileUrl="/apply"
-                desktopUrl="/apply"
-                className="p-job__box"
-              >
-                <div className="p-job__img">
-                  <img className="u-pc" src="/lp/img/job-3.png" alt="" />
-                  <img className="u-sp" src="/lp/img/sp/job-3-sp.png" alt="" />
-                </div>
-                <div className="p-job__contents">
-                  <h3 className="p-job__title">大手企業の海外店舗の「スーシェフ候補」</h3>
-                  <div className="p-job__wrapper">
-                    <span className="p-job__tag">月給</span>
-                    <span className="p-job__text">80万円〜 </span>
-                  </div>
-                </div>
-                <p className="p-job__place">アメリカ</p>
-              </DeviceAwareLink>
-              <DeviceAwareLink 
-                mobileUrl="/apply"
-                desktopUrl="/apply"
-                className="p-job__box"
-              >
-                <div className="p-job__img">
-                  <img className="u-pc" src="/lp/img/job-4.png" alt="" />
-                  <img className="u-sp" src="/lp/img/sp/job-4-sp.png" alt="" />
-                </div>
-                <div className="p-job__contents">
-                  <h3 className="p-job__title">SNSで話題の<br />あのお店の「調理サポートスタッフ」</h3>
-                  <div className="p-job__container">
-                    <div className="p-job__wrapper">
-                      <span className="p-job__tag">月給</span>
-                      <span className="p-job__text">25万円〜 </span>
+        <JobExampleSection />
+
+        {columnArticles.length > 0 && (
+          <section className="l-section p-column">
+            <div className="l-inner">
+              <h2 className="c-heading --column">転職コラム</h2>
+              <div className="p-column__boxes">
+                {columnArticles.map((article) => (
+                  <Link
+                    key={article.id}
+                    href={`/columns/${article.slug}`}
+                    className="p-column__box"
+                  >
+                    <div className="p-column__img">
+                      {article.thumbnail_url ? (
+                        <img src={article.thumbnail_url} alt={article.title} />
+                      ) : (
+                        <div className="p-column__img-placeholder">
+                          <span>Column</span>
+                        </div>
+                      )}
                     </div>
-                    <div className="p-job__wrapper">
-                      <span className="p-job__tag">休日</span>
-                      <span className="p-job__text">週休3日 </span>
+                    <div className="p-column__body">
+                      {article.tags && article.tags.length > 0 && (
+                        <div className="p-column__tags">
+                          {article.tags.slice(0, 2).map((tag) => (
+                            <span key={tag} className="p-column__tag">{tag}</span>
+                          ))}
+                        </div>
+                      )}
+                      <h3 className="p-column__title">{article.title}</h3>
+                      {article.description && (
+                        <p className="p-column__desc">{article.description}</p>
+                      )}
+                      <div className="p-column__meta">
+                        <span className="p-column__author">{article.author || '編集部'}</span>
+                        <time className="p-column__date" dateTime={article.published_at}>
+                          {new Date(article.published_at!).toLocaleDateString('ja-JP', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                          })}
+                        </time>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <p className="p-job__place">東京</p>
-              </DeviceAwareLink>
+                  </Link>
+                ))}
+              </div>
+              <div className="p-column__more">
+                <Link href="/columns" className="p-column__more-link">
+                  コラム一覧を見る
+                </Link>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         <section className="p-cta">
           <p className="p-cta__message">「寿司職人専門」のキャリアアドバイザーが、<br />あなたのキャリアを無料サポート！</p>
