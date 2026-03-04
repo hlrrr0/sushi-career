@@ -58,10 +58,8 @@ export default function ExitIntentPopupBeginner() {
 
   if (!isVisible || !mounted) return null;
 
-  // デバイスに応じてリンク先を決定
-  const targetUrl = isMobile 
-    ? "/apply-0219"
-    : "/apply-0219";
+  // LINEへの直接導線
+  const targetUrl = "https://lin.ee/xHNQydj";
 
   return (
     <>

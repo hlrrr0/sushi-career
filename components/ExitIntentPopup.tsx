@@ -58,10 +58,8 @@ export default function ExitIntentPopup() {
 
   if (!isVisible || !mounted) return null;
 
-  // デバイスに応じてリンク先を決定
-  const targetUrl = isMobile 
-    ? "https://s.lmes.jp/landing-qr/2007732519-iZrbg9ES?uLand=Q42IOK"
-    : "/apply";
+  // LINEへの直接導線
+  const targetUrl = "https://lin.ee/xHNQydj";
 
   return (
     <>
