@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
 
 export default function ExitIntentPopup() {
   const [isVisible, setIsVisible] = useState(false);
@@ -41,14 +40,22 @@ export default function ExitIntentPopup() {
     };
   }, [hasShown]);
 
+  // LIFF URL（fbclid付き）
+  const [targetUrl, setTargetUrl] = useState('https://liff.line.me/2009291867-3s4LCRIm');
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const fbclid = params.get('fbclid');
+    if (fbclid) {
+      setTargetUrl(`https://liff.line.me/2009291867-3s4LCRIm?fbclid=${encodeURIComponent(fbclid)}`);
+    }
+  }, []);
+
   const handleClose = () => {
     setIsVisible(false);
   };
 
   if (!isVisible || !mounted) return null;
-
-  // LINEへの直接導線
-  const targetUrl = "https://lin.ee/xHNQydj";
 
   return (
     <>
@@ -211,8 +218,10 @@ export default function ExitIntentPopup() {
             </div>
 
             {/* CTAボタン */}
-            <Link 
+            <a
               href={targetUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
                 display: 'block',
                 width: '100%',
@@ -238,7 +247,7 @@ export default function ExitIntentPopup() {
               }}
             >
               無料で求人を見てみる
-            </Link>
+            </a>
           </div>
         </div>
       </div>

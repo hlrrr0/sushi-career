@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import ExitIntentPopup from '@/components/ExitIntentPopup';
 import JobExampleSection from '@/components/JobExampleSection';
+import LiffCtaButton from '@/components/LiffCtaButton';
 import { fetchPublishedArticles } from '@/lib/api/articles';
 
 export const revalidate = 3600;
@@ -53,9 +54,7 @@ export default async function LandingPage() {
             </p>
             <div className="c-button">
               <img src="/lp/img/icon-cta.svg" alt="簡単!30秒" />
-              <a href="https://lin.ee/xHNQydj" target="_blank" rel="noopener noreferrer">
-                求人を見てみる (無料)
-              </a>
+              <LiffCtaButton />
             </div>
           </div>
         </div>
@@ -154,9 +153,7 @@ export default async function LandingPage() {
           <p className="p-cta__message">「寿司職人専門」のキャリアアドバイザーが、<br />あなたのキャリアを無料サポート！</p>
           <div className="p-cta__button c-button">
             <img src="/lp/img/icon-cta.svg" alt="簡単!30秒" />
-            <a href="https://lin.ee/xHNQydj" target="_blank" rel="noopener noreferrer">
-              求人を見てみる (無料)
-            </a>
+            <LiffCtaButton />
           </div>
         </section>
 
@@ -382,9 +379,7 @@ export default async function LandingPage() {
               <p className="p-footer-cta__text--main">まずは無料の会員登録をして<br className="u-sp" />求人をチェック！</p>
               <div className="p-footer-cta__button c-button --large">
                 <img src="/lp/img/icon-cta-lg.svg" alt="簡単!30秒" />
-                <a href="https://lin.ee/xHNQydj" target="_blank" rel="noopener noreferrer">
-                  求人を見てみる (無料)
-                </a>
+                <LiffCtaButton />
               </div>
             </div>
           </div>
