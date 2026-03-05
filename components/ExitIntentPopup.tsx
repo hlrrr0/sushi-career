@@ -41,13 +41,13 @@ export default function ExitIntentPopup() {
   }, [hasShown]);
 
   // LIFF URL（fbclid付き）
-  const [targetUrl, setTargetUrl] = useState('https://liff.line.me/2009291867-3s4LCRIm');
+  const [targetUrl, setTargetUrl] = useState('https://liff.line.me/2007732519-m2atzql7');
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const fbclid = params.get('fbclid');
     if (fbclid) {
-      setTargetUrl(`https://liff.line.me/2009291867-3s4LCRIm?fbclid=${encodeURIComponent(fbclid)}`);
+      setTargetUrl(`https://liff.line.me/2007732519-m2atzql7?fbclid=${encodeURIComponent(fbclid)}`);
     }
   }, []);
 

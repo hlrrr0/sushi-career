@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-const LIFF_URL = 'https://liff.line.me/2009291867-3s4LCRIm';
+const LIFF_URL = 'https://liff.line.me/2007732519-m2atzql7';
 
 export default function LiffCtaButton() {
   const [href, setHref] = useState(LIFF_URL);
